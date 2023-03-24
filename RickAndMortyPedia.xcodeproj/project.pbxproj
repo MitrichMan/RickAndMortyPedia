@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D179B4329CDBA79009F8E67 /* CharacterCell.swift */; };
+		4D179B4629CDBE8F009F8E67 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D179B4529CDBE8F009F8E67 /* ContentCell.swift */; };
 		4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */; };
 		4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BA329CC4A7A0053CD2F /* SceneDelegate.swift */; };
 		4D353BA929CC4A7A0053CD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D353BA729CC4A7A0053CD2F /* Main.storyboard */; };
@@ -17,9 +19,12 @@
 		4D353BC129CC56300053CD2F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC029CC56300053CD2F /* DetailsViewController.swift */; };
 		4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */; };
 		4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */; };
+		4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC929CC58CF0053CD2F /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D179B4329CDBA79009F8E67 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
+		4D179B4529CDBE8F009F8E67 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		4D353B9E29CC4A7A0053CD2F /* RickAndMortyPedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyPedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D353BA329CC4A7A0053CD2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +37,7 @@
 		4D353BC029CC56300053CD2F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
+		4D353BC929CC58CF0053CD2F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,7 @@
 		4D353BA029CC4A7A0053CD2F /* RickAndMortyPedia */ = {
 			isa = PBXGroup;
 			children = (
+				4D353BC629CC587F0053CD2F /* Views */,
 				4D353BBB29CC4B750053CD2F /* Services */,
 				4D353BB829CC4B1E0053CD2F /* Models */,
 				4D353BB629CC4A9F0053CD2F /* App */,
@@ -117,6 +124,16 @@
 				4D353BBC29CC4B8F0053CD2F /* NetworkManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4D353BC629CC587F0053CD2F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4D353BC929CC58CF0053CD2F /* CategoryCell.swift */,
+				4D179B4329CDBA79009F8E67 /* CharacterCell.swift */,
+				4D179B4529CDBE8F009F8E67 /* ContentCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,8 +210,11 @@
 				4D353BBD29CC4B8F0053CD2F /* NetworkManager.swift in Sources */,
 				4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */,
 				4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */,
+				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,
 				4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */,
+				4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */,
+				4D179B4629CDBE8F009F8E67 /* ContentCell.swift in Sources */,
 				4D353BBA29CC4B490053CD2F /* Categories.swift in Sources */,
 				4D353BC129CC56300053CD2F /* DetailsViewController.swift in Sources */,
 			);

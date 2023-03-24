@@ -13,15 +13,33 @@ struct Categories: Decodable {
     let episodes: URL
 }
 
+// MARK: - Characters
+struct Characters: Decodable {
+    let info: Info
+    let results: [Character]
+}
+
+// MARK: - Locations
+struct Locations: Decodable {
+    let info: Info
+    let results: [Location]
+}
+
+// MARK: - Episodes
+struct Episodes: Decodable {
+    let info: Info
+    let results: [Episode]
+}
+
+// MARK: - Info
 struct Info: Decodable {
     let count: Int
     let pages: Int
-    let next: URL
-    let prev: URL
+    let next: String?
+    let prev: String?
 }
 
-
-
+// MARK: - Character
 struct Character: Decodable {
     let id: Int
     let name: String
@@ -31,22 +49,13 @@ struct Character: Decodable {
     let gender: String
     let origin: Origin
     let location: CharacterLocation
-    let image: URL
-    let episode: [URL]
-    let url: URL
+    let image: String
+    let episode: [String]
+    let url: String
     let created: String
 }
 
-struct Origin: Decodable {
-    let name: String
-    let url: URL
-}
-
-struct CharacterLocation: Decodable {
-    let name: String
-    let url: URL
-}
-
+// MARK: - Location
 struct Location: Decodable {
     let id: Int
     let name: String
@@ -57,6 +66,7 @@ struct Location: Decodable {
     let created: String
 }
 
+// MARK: - Episode
 struct Episode: Decodable {
     let id: Int
     let name: String
@@ -65,4 +75,35 @@ struct Episode: Decodable {
     let characters: [URL]
     let url: URL
     let created: String
+    
+}
+
+// MARK: - Origin
+struct Origin: Decodable {
+    let name: String
+    let url: String
+}
+
+// MARK: - CharacterLocation
+struct CharacterLocation: Decodable {
+    let name: String
+    let url: String
+}
+
+// MARK: - CategoryNames
+enum CategoryNames: CaseIterable {
+    case characters
+    case locations
+    case episodes
+    
+    var title: String {
+        switch self {
+        case .characters:
+            return "Персонажи"
+        case .locations:
+            return "Локации"
+        case .episodes:
+            return "Эпизоды"
+        }
+    }
 }
