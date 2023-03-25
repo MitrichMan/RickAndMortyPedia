@@ -79,9 +79,9 @@ extension CategoriesViewController {
             switch result {
             case .success(let categories):
                 self?.categories = categories
-                print(categories)
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
             }
         }
     }

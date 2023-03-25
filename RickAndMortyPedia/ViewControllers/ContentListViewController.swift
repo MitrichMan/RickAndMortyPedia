@@ -79,6 +79,20 @@ final class ContentListViewController: UITableViewController {
         url = filterVC.url
         category = filterVC.category
         fetch(filterVC.category)
+        switch category {
+        case .characters:
+            if characters.results.isEmpty {
+                showAlert(withStatus: .noContent)
+            }
+        case .locations:
+            if locations.results.isEmpty {
+                showAlert(withStatus: .noContent)
+            }
+        default:
+            if episodes.results.isEmpty {
+                showAlert(withStatus: .noContent)
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -174,6 +188,7 @@ extension ContentListViewController {
                 self?.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
             }
         }
     }
@@ -188,6 +203,7 @@ extension ContentListViewController {
                 self?.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
             }
         }
     }
@@ -201,7 +217,8 @@ extension ContentListViewController {
                 self?.numberOfPages = episodes.info.pages
                 self?.tableView.reloadData()
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
             }
         }
     }

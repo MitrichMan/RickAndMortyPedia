@@ -61,6 +61,21 @@ class FilterViewController: UIViewController {
     @IBAction func applyButtonTapped(_ sender: UIButton) {
         switch category {
         case .characters:
+            if characterStatusTextField.text != "" &&
+                characterStatusTextField.text != "alive" &&
+                characterStatusTextField.text != "dead" &&
+                characterStatusTextField.text != "unknown" {
+                showAlert(withStatus: .wrongStatusInput)
+                break
+            }
+            if characterGenderTextField.text != "" &&
+                characterGenderTextField.text != "female" &&
+                characterGenderTextField.text != "male" &&
+                characterGenderTextField.text != "genderless" &&
+                characterGenderTextField.text != "unknown" {
+                showAlert(withStatus: .wrongStatusInput)
+                break
+            }
             filterCharacters()
         case .locations:
             filterLocations()

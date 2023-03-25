@@ -21,6 +21,7 @@
 		4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */; };
 		4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC929CC58CF0053CD2F /* CategoryCell.swift */; };
 		4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */; };
+		4DA77EF129CF426600FBC35C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EF029CF426600FBC35C /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		4D353BC929CC58CF0053CD2F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		4DA77EF029CF426600FBC35C /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		4D353BA029CC4A7A0053CD2F /* RickAndMortyPedia */ = {
 			isa = PBXGroup;
 			children = (
+				4DA77EEF29CF420100FBC35C /* Extensions */,
 				4D353BC629CC587F0053CD2F /* Views */,
 				4D353BBB29CC4B750053CD2F /* Services */,
 				4D353BB829CC4B1E0053CD2F /* Models */,
@@ -137,6 +140,14 @@
 				4D179B4529CDBE8F009F8E67 /* ContentCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4DA77EEF29CF420100FBC35C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4DA77EF029CF426600FBC35C /* AlertController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 				4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */,
 				4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */,
 				4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */,
+				4DA77EF129CF426600FBC35C /* AlertController.swift in Sources */,
 				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,
 				4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */,
