@@ -27,6 +27,7 @@ final class CategoriesViewController: UICollectionViewController {
         let contentListVC = segue.destination as? ContentListViewController
         contentListVC?.url = contentUrl
         contentListVC?.fetch(contentCategory)
+        contentListVC?.categories = categories
         contentListVC?.category = contentCategory
     }
 

@@ -75,7 +75,7 @@ extension DetailsViewController {
         default:
             details = """
 Название: \(episode.name)
-Дата выхода в эфир: \(episode.air_date)
+Дата выхода в эфир: \(episode.airDate)
 Код эпизода: \(episode.episode)
 Список персонажей, замеченых в эпизоде: \(episode.characters[0])
 Дата внесения в базу: \(episode.created)

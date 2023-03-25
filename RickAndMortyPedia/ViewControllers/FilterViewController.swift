@@ -30,14 +30,13 @@ class FilterViewController: UIViewController {
     
     var url: URL!
     var category: Category!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         title = category.title
+        
+        setUpPlaceholders()
         setUpFilters()
-        
-        
     }
     
     // MARK: - IBActions
@@ -60,27 +59,45 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func applyButtonTapped(_ sender: UIButton) {
-        guard let url else { return }
-        var urlWithFilters = String(describing: url)
-        if characterNameTextField.text != "" {
-            let url = urlWithFilters
-            urlWithFilters = "\(url)/?name=\(characterNameTextField.text ?? "")"
-            print(urlWithFilters)
+        switch category {
+        case .characters:
+            filterCharacters()
+        case .locations:
+            filterLocations()
+        default:
+            filterEpisodes()
         }
-//        You can also include filters in the URL by including additional query parameters.
-//        To start filtering add a ? followed by the query <query>=<value>. If you want to chain
-//        several queries in the same call, use & followed by the query.
-        
-        //name: filter by the given name.
-        //status: filter by the given status (alive, dead or unknown).
-        //species: filter by the given species.
-        //type: filter by the given type.
-        //gender: filter by the given gender (female, male, genderless or unknown).
-        //GET https://rickandmortyapi.com/api/character/?name=rick&status=alive
+        dismiss(animated: true)
     }
-    
-    // MARK: - PrivateMethods
-    private func setUpFilters() {
+}
+
+// MARK: - Setup placeholders
+private extension FilterViewController {
+    func changePlaceholderTextColor(in textField: UITextField, for text: String) {
+        textField.attributedPlaceholder = NSAttributedString(
+            string: text,
+            attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0, green: 0.6796290874, blue: 0, alpha: 1)]
+        )
+    }
+    func setUpPlaceholders() {
+        changePlaceholderTextColor(in: characterNameTextField, for: "Name")
+        changePlaceholderTextColor(in: characterStatusTextField, for: "Alive, dead or unknown")
+        changePlaceholderTextColor(in: characterSpeciesTextField, for: "Species")
+        changePlaceholderTextColor(in: characterTypeTextField, for: "Type")
+        changePlaceholderTextColor(in: characterGenderTextField, for: "Female, male, genderless or unknown")
+        
+        changePlaceholderTextColor(in: locationNameTextField, for: "Name")
+        changePlaceholderTextColor(in: locationTypeTextField, for: "Type")
+        changePlaceholderTextColor(in: locationDimensionTextField, for: "Dimension")
+        
+        changePlaceholderTextColor(in: episodeNameTextField, for: "Name")
+        changePlaceholderTextColor(in: episodeCodeTextField, for: "S01E01")
+    }
+}
+
+// MARK: - Filters
+private extension FilterViewController {
+    func setUpFilters() {
         switch category {
         case .characters:
             locationStackView.isHidden = true
@@ -93,36 +110,55 @@ class FilterViewController: UIViewController {
             locationStackView.isHidden = true
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func filter(by query: String, with textField: UITextField, url urlWithFilters: inout String, count filtersCount: inout Int) {
+        if textField.text != "" {
+            if filtersCount == 0 {
+                urlWithFilters = "\(urlWithFilters)/?\(query)=\(textField.text ?? "")"
+                filtersCount += 1
+            } else {
+                urlWithFilters = "\(urlWithFilters)&\(query)=\(textField.text ?? "")"
+                filtersCount += 1
+            }
+        }
     }
-    */
-
+    
+    func filterCharacters() {
+        guard let temporaryUrl = url else { return }
+        var urlWithFilters = String(describing: temporaryUrl)
+        var filtersCount = 0
+        
+        filter(by: "name", with: characterNameTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "status", with: characterStatusTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "species", with: characterSpeciesTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "type", with: characterTypeTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "gender", with: characterGenderTextField, url: &urlWithFilters, count: &filtersCount)
+        
+        url = URL(string: urlWithFilters)
+    }
+    
+    func filterLocations() {
+        guard let temporaryUrl = url else { return }
+        var urlWithFilters = String(describing: temporaryUrl)
+        var filtersCount = 0
+        
+        filter(by: "name", with: locationNameTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "type", with: locationTypeTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "dimension", with: locationDimensionTextField, url: &urlWithFilters, count: &filtersCount)
+        
+        url = URL(string: urlWithFilters)
+    }
+    
+    func filterEpisodes() {
+        guard let temporaryUrl = url else { return }
+        var urlWithFilters = String(describing: temporaryUrl)
+        var filtersCount = 0
+        
+        filter(by: "name", with: episodeNameTextField, url: &urlWithFilters, count: &filtersCount)
+        filter(by: "episode", with: episodeCodeTextField, url: &urlWithFilters, count: &filtersCount)
+        
+        url = URL(string: urlWithFilters)
+    }
 }
-
-
-
-
-//Locations
-//name: filter by the given name.
-//type: filter by the given type.
-//dimension: filter by the given dimension.
-//If you want to know how to use queries, check here
-
-//Filter episodes
-//
-//Available parameters:
-//
-//name: filter by the given name.
-//episode: filter by the given episode code.
-//If you want to know how to use queries, check here.
-//
-
 
 

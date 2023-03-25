@@ -70,13 +70,25 @@ struct Location: Decodable {
 struct Episode: Decodable {
     let id: Int
     let name: String
-    let air_date: String
+    let airDate: String
     let episode: String
     let characters: [URL]
     let url: URL
     let created: String
-    
 }
+
+extension Episode {
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case airDate = "air_date"
+        case episode = "episode"
+        case characters = "characters"
+        case url = "url"
+        case created = "created"
+    }
+}
+
 
 // MARK: - Origin
 struct Origin: Decodable {
@@ -140,7 +152,6 @@ struct CharacterLocation: Decodable {
 
 // MARK: - CategoryNames
 enum Category: CaseIterable {
-    
     case characters
     case locations
     case episodes

@@ -14,6 +14,7 @@ final class ContentListViewController: UITableViewController {
     
     var url: URL!
     
+    var categories: Categories!
     var category: Category!
     
     private let networkManager = NetworkManager.shared
@@ -35,8 +36,15 @@ final class ContentListViewController: UITableViewController {
     
     // MARK: - IBActions
     @IBAction func filterButtonTapped(_ sender: Any) {
+        switch category {
+        case .characters:
+            url = categories.characters
+        case .locations:
+            url = categories.locations
+        default:
+            url = categories.episodes
+        }
         performSegue(withIdentifier: "goToFilter", sender: nil)
-
     }
     
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
@@ -65,8 +73,12 @@ final class ContentListViewController: UITableViewController {
             guard let nextLink = episodes.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
             fetchEpisodes(from: nextLinkUrl)
         }
-        
-
+    }
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        guard let filterVC = segue.source as? FilterViewController else { return }
+        url = filterVC.url
+        category = filterVC.category
+        fetch(filterVC.category)
     }
     
     // MARK: - Table view data source
