@@ -14,7 +14,7 @@ final class ContentListViewController: UITableViewController {
     
     var url: URL!
     
-    var categoryName: CategoryNames!
+    var category: Category!
     
     private let networkManager = NetworkManager.shared
     
@@ -30,12 +30,17 @@ final class ContentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
-        title = categoryName.title
+        title = category.title
     }
     
     // MARK: - IBActions
+    @IBAction func filterButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "goToFilter", sender: nil)
+
+    }
+    
     @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
-        switch categoryName {
+        switch category {
         case .characters:
             guard let prevLink = characters.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
             fetchCharacters(from: prevLinkUrl)
@@ -49,7 +54,7 @@ final class ContentListViewController: UITableViewController {
     }
     
     @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
-        switch categoryName {
+        switch category {
         case .characters:
             guard let nextLink = characters.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
             fetchCharacters(from: nextLinkUrl)
@@ -73,7 +78,7 @@ final class ContentListViewController: UITableViewController {
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          var cell: UITableViewCell
          
-         switch categoryName {
+         switch category {
          case .characters:
             cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath)
              guard let cell = cell as? CharacterCell else { return UITableViewCell() }
@@ -100,7 +105,7 @@ final class ContentListViewController: UITableViewController {
 
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch categoryName {
+        switch category {
         case .characters:
             let character = characters.results[indexPath.row]
             performSegue(withIdentifier: "goToDetails", sender: character)
@@ -115,22 +120,28 @@ final class ContentListViewController: UITableViewController {
     
      // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailsVC = segue.destination as? DetailsViewController else { return }
-        detailsVC.categoryName = categoryName
-        switch categoryName {
-        case .characters:
-            detailsVC.character = sender as? Character
-        case .locations:
-            detailsVC.location = sender as? Location
-        default:
-            detailsVC.episode = sender as? Episode
+        if segue.identifier == "goToDetails" {
+            guard let detailsVC = segue.destination as? DetailsViewController else { return }
+            detailsVC.category = category
+            switch category {
+            case .characters:
+                detailsVC.character = sender as? Character
+            case .locations:
+                detailsVC.location = sender as? Location
+            default:
+                detailsVC.episode = sender as? Episode
+            }
+        } else {
+            guard let filterVC = segue.destination as? FilterViewController else { return }
+            filterVC.url = url
+            filterVC.category = category
         }
     }
 }
 
 // MARK: - Networking
 extension ContentListViewController {
-    func fetch(_ category: CategoryNames) {
+    func fetch(_ category: Category) {
         switch category {
         case .characters:
             fetchCharacters(from: url)
@@ -186,7 +197,7 @@ extension ContentListViewController {
     private func getNameForCell(at indexPath: Int) -> String {
         var name = ""
         
-        switch categoryName {
+        switch category {
         case .characters:
             name = characters.results[indexPath].name
         case .locations:

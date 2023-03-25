@@ -10,11 +10,11 @@ import UIKit
 final class CategoriesViewController: UICollectionViewController {
     
     private let networkManager = NetworkManager.shared
-    private let categoryNames = CategoryNames.allCases
+    private let categoryNames = Category.allCases
     private var categories: Categories!
     
     private var contentUrl: URL!
-    private var contentCategory: CategoryNames!
+    private var contentCategory: Category!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ final class CategoriesViewController: UICollectionViewController {
         let contentListVC = segue.destination as? ContentListViewController
         contentListVC?.url = contentUrl
         contentListVC?.fetch(contentCategory)
-        contentListVC?.categoryName = contentCategory
+        contentListVC?.category = contentCategory
     }
 
     // MARK: UICollectionViewDataSource
@@ -49,17 +49,15 @@ final class CategoriesViewController: UICollectionViewController {
         switch categoryButton {
         case .characters:
             contentUrl = categories.characters
-            contentCategory = CategoryNames.characters
-            performSegue(withIdentifier: "goToContentList", sender: nil)
+            contentCategory = Category.characters
         case .locations:
             contentUrl = categories.locations
-            contentCategory = CategoryNames.locations
-            performSegue(withIdentifier: "goToContentList", sender: nil)
+            contentCategory = Category.locations
         case .episodes:
             contentUrl = categories.episodes
-            contentCategory = CategoryNames.episodes
-            performSegue(withIdentifier: "goToContentList", sender: nil)
+            contentCategory = Category.episodes
         }
+        performSegue(withIdentifier: "goToContentList", sender: nil)
     }
 }
 
@@ -87,28 +85,3 @@ extension CategoriesViewController {
         }
     }
 }
-
-//extension CategoriesViewController {
-//    private func setUpSegue(with data: CategoryNames) {
-//        let contentListVC = UITableViewController() as? ContentListViewController
-//
-//
-//        switch data {
-//        case .characters:
-//            contentListVC?.url = categories.characters
-//            contentListVC?.fetchCharacters()
-//            contentListVC?.categoryName = CategoryNames.characters
-//            performSegue(withIdentifier: "goToContentList", sender: nil)
-//        case .locations:
-//            contentListVC?.url = categories.locations
-//            contentListVC?.fetchLocations()
-//            contentListVC?.categoryName = CategoryNames.locations
-//            performSegue(withIdentifier: "goToContentList", sender: nil)
-//        case .episodes:
-//            contentListVC?.url = categories.episodes
-//            contentListVC?.fetchEpisodes()
-//            contentListVC?.categoryName = CategoryNames.episodes
-//            performSegue(withIdentifier: "goToContentList", sender: nil)
-//        }
-//    }
-//}

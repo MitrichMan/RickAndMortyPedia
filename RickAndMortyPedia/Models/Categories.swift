@@ -90,8 +90,57 @@ struct CharacterLocation: Decodable {
     let url: String
 }
 
+// MARK: - ContentDetails
+//struct ContentDetails {
+//    let category: Category
+//    let details: String
+//
+//    static func getDetails(for category: Category) -> String {
+//        switch category {
+//        case let .characters(character):
+//
+//            character.info
+//
+//            ContentDetails(
+//                details = """
+//Имя: \(character.name)
+//Статус: \(character.status)
+//Вид: \(character.species)
+//Тип: \(character.type)
+//Пол: \(character.gender)
+//Происхождение: \(character.origin.name)
+//\(character.origin.url)
+//Последнее известное местоположение: \(character.location.name)
+//\(character.location.url)
+//Появлялся в эпизодах: \(character.episode[0])
+//Дата внесения в базу: \(character.created)
+//"""
+//                )
+//        case .locations:
+//            details = """
+//Название: \(location.name)
+//Тип: \(location.type)
+//Измерение: \(location.dimension)
+//Резиденты: \(location.residents[0])
+//Дата внесения в базу: \(location.created)
+//"""
+//        default:
+//            details = """
+//Название: \(episode.name)
+//Дата выхода в эфир: \(episode.air_date)
+//Код эпизода: \(episode.episode)
+//Список персонажей, замеченых в эпизоде: \(episode.characters[0])
+//Дата внесения в базу: \(episode.created)
+//
+//"""
+//        }
+//        return details
+//    }
+//}
+
 // MARK: - CategoryNames
-enum CategoryNames: CaseIterable {
+enum Category: CaseIterable {
+    
     case characters
     case locations
     case episodes
@@ -107,3 +156,4 @@ enum CategoryNames: CaseIterable {
         }
     }
 }
+

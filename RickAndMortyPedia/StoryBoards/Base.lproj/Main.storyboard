@@ -97,17 +97,257 @@
             </objects>
             <point key="canvasLocation" x="284.73282442748092" y="-65.492957746478879"/>
         </scene>
-        <!--View Controller-->
+        <!--Filter View Controller-->
         <scene sceneID="vev-d7-Ozw">
             <objects>
-                <viewController id="a6r-Wm-aDE" sceneMemberID="viewController">
+                <viewController id="a6r-Wm-aDE" customClass="FilterViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tu2-Pm-yCb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="SEJ-rW-qbz">
+                                <rect key="frame" x="46" y="498" width="228" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cL7-tQ-Lup">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Сбросить">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="clearButtonTapped" destination="a6r-Wm-aDE" eventType="touchUpInside" id="YhI-pV-XXj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKw-Zu-C7R">
+                                        <rect key="frame" x="138" y="0.0" width="90" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title=" Применить">
+                                            <color key="titleColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="applyButtonTapped:" destination="a6r-Wm-aDE" eventType="touchUpInside" id="uGE-Ag-Aq8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ioe-T6-Kiq">
+                                <rect key="frame" x="16" y="92.5" width="288" height="393"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-pp-yQw">
+                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJ2-lU-zyN">
+                                        <rect key="frame" x="0.0" y="39" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG3-dh-Z6N">
+                                        <rect key="frame" x="0.0" y="80" width="123.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Status" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dhK-DW-zZf">
+                                        <rect key="frame" x="0.0" y="119" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1v-5m-11H">
+                                        <rect key="frame" x="0.0" y="160" width="133.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Species" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2VP-OY-Xo5">
+                                        <rect key="frame" x="0.0" y="199" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyL-gn-zFC">
+                                        <rect key="frame" x="0.0" y="240" width="108.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yKQ-Sv-KxC">
+                                        <rect key="frame" x="0.0" y="279" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-7V-iQV">
+                                        <rect key="frame" x="0.0" y="320" width="129.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Gender" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tDj-DO-drk">
+                                        <rect key="frame" x="0.0" y="359" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2VP-OY-Xo5" secondAttribute="trailing" id="1HI-3Z-JSx"/>
+                                    <constraint firstAttribute="trailing" secondItem="yKQ-Sv-KxC" secondAttribute="trailing" id="NwA-k8-ZcN"/>
+                                    <constraint firstItem="yKQ-Sv-KxC" firstAttribute="leading" secondItem="Ioe-T6-Kiq" secondAttribute="leading" id="O0h-xd-xve"/>
+                                    <constraint firstItem="2VP-OY-Xo5" firstAttribute="leading" secondItem="Ioe-T6-Kiq" secondAttribute="leading" id="PO7-Qj-Hsq"/>
+                                    <constraint firstAttribute="trailing" secondItem="dhK-DW-zZf" secondAttribute="trailing" id="Qe1-kP-zfk"/>
+                                    <constraint firstItem="tDj-DO-drk" firstAttribute="leading" secondItem="Ioe-T6-Kiq" secondAttribute="leading" id="VIg-kR-erQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="tDj-DO-drk" secondAttribute="trailing" id="d7E-pu-49q"/>
+                                    <constraint firstAttribute="trailing" secondItem="OJ2-lU-zyN" secondAttribute="trailing" id="gDs-L8-9Md"/>
+                                    <constraint firstItem="dhK-DW-zZf" firstAttribute="leading" secondItem="Ioe-T6-Kiq" secondAttribute="leading" id="lTJ-i6-7rl"/>
+                                    <constraint firstItem="OJ2-lU-zyN" firstAttribute="leading" secondItem="Ioe-T6-Kiq" secondAttribute="leading" id="pbQ-ia-Zlb"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="wIa-h3-uKc">
+                                <rect key="frame" x="16" y="92.5" width="288" height="233"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYM-cu-VeA">
+                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zvM-ht-MWo">
+                                        <rect key="frame" x="0.0" y="39" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAj-2t-37l">
+                                        <rect key="frame" x="0.0" y="80" width="108.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Type" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-1g-6c4">
+                                        <rect key="frame" x="0.0" y="119" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by dimension" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iys-E9-SkR">
+                                        <rect key="frame" x="0.0" y="160" width="155" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dimension" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eYB-nD-5zH">
+                                        <rect key="frame" x="0.0" y="199" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eYB-nD-5zH" firstAttribute="leading" secondItem="wIa-h3-uKc" secondAttribute="leading" id="3xW-uA-MGh"/>
+                                    <constraint firstItem="q4Z-1g-6c4" firstAttribute="leading" secondItem="wIa-h3-uKc" secondAttribute="leading" id="8ab-ZR-xfh"/>
+                                    <constraint firstAttribute="trailing" secondItem="eYB-nD-5zH" secondAttribute="trailing" id="GiN-XI-Gvi"/>
+                                    <constraint firstAttribute="trailing" secondItem="q4Z-1g-6c4" secondAttribute="trailing" id="Wxh-Wl-dAk"/>
+                                    <constraint firstItem="zvM-ht-MWo" firstAttribute="leading" secondItem="wIa-h3-uKc" secondAttribute="leading" id="qYr-Nu-lgS"/>
+                                    <constraint firstAttribute="trailing" secondItem="zvM-ht-MWo" secondAttribute="trailing" id="sWY-a5-NAY"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="KYT-Rd-JRh">
+                                <rect key="frame" x="16" y="92.5" width="288" height="153"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1In-Nh-AVq">
+                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bIu-ov-gtP">
+                                        <rect key="frame" x="0.0" y="39" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by episode code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA7-UY-8Ai">
+                                        <rect key="frame" x="0.0" y="80" width="178.5" height="32"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IAh-ap-InY">
+                                        <rect key="frame" x="0.0" y="119" width="288" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bIu-ov-gtP" secondAttribute="trailing" id="RSr-p6-v3O"/>
+                                    <constraint firstItem="IAh-ap-InY" firstAttribute="leading" secondItem="KYT-Rd-JRh" secondAttribute="leading" id="as2-jb-Jmd"/>
+                                    <constraint firstAttribute="trailing" secondItem="IAh-ap-InY" secondAttribute="trailing" id="oUo-wY-Az8"/>
+                                    <constraint firstItem="bIu-ov-gtP" firstAttribute="leading" secondItem="KYT-Rd-JRh" secondAttribute="leading" id="sSs-Fh-oak"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="XxW-kd-eaY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XxW-kd-eaY" firstAttribute="bottom" secondItem="SEJ-rW-qbz" secondAttribute="bottom" constant="30" id="3Z1-eF-Uy4"/>
+                            <constraint firstItem="XxW-kd-eaY" firstAttribute="trailing" secondItem="Ioe-T6-Kiq" secondAttribute="trailing" constant="16" id="6oI-hP-sQg"/>
+                            <constraint firstItem="Ioe-T6-Kiq" firstAttribute="leading" secondItem="XxW-kd-eaY" secondAttribute="leading" constant="16" id="DuT-wm-dgo"/>
+                            <constraint firstItem="XxW-kd-eaY" firstAttribute="trailing" secondItem="KYT-Rd-JRh" secondAttribute="trailing" constant="16" id="Kkj-06-jp8"/>
+                            <constraint firstItem="wIa-h3-uKc" firstAttribute="top" secondItem="Ioe-T6-Kiq" secondAttribute="top" id="MUX-vy-Pm7"/>
+                            <constraint firstItem="SEJ-rW-qbz" firstAttribute="centerX" secondItem="Tu2-Pm-yCb" secondAttribute="centerX" id="Qjg-Uh-H74"/>
+                            <constraint firstItem="KYT-Rd-JRh" firstAttribute="leading" secondItem="XxW-kd-eaY" secondAttribute="leading" constant="16" id="Xqw-Nd-L0Z"/>
+                            <constraint firstItem="KYT-Rd-JRh" firstAttribute="top" secondItem="Ioe-T6-Kiq" secondAttribute="top" id="hKu-5L-Vl9"/>
+                            <constraint firstItem="Ioe-T6-Kiq" firstAttribute="top" secondItem="XxW-kd-eaY" secondAttribute="top" id="lbX-yg-PBw"/>
+                            <constraint firstItem="XxW-kd-eaY" firstAttribute="trailing" secondItem="wIa-h3-uKc" secondAttribute="trailing" constant="16" id="qVf-1A-ItE"/>
+                            <constraint firstItem="wIa-h3-uKc" firstAttribute="leading" secondItem="XxW-kd-eaY" secondAttribute="leading" constant="16" id="vax-AG-Chn"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e14-Jc-Wtu"/>
+                    <connections>
+                        <outlet property="characterGenderTextField" destination="tDj-DO-drk" id="9Ze-MB-EQz"/>
+                        <outlet property="characterNameTextField" destination="OJ2-lU-zyN" id="zDj-tI-6x5"/>
+                        <outlet property="characterSpeciesTextField" destination="2VP-OY-Xo5" id="qGT-we-Z1Q"/>
+                        <outlet property="characterStackView" destination="Ioe-T6-Kiq" id="Leg-FL-f72"/>
+                        <outlet property="characterStatusTextField" destination="dhK-DW-zZf" id="wAz-ui-VJT"/>
+                        <outlet property="characterTypeTextField" destination="yKQ-Sv-KxC" id="8ge-kd-TVD"/>
+                        <outlet property="episodeCodeTextField" destination="IAh-ap-InY" id="G23-jV-oWp"/>
+                        <outlet property="episodeNameTextField" destination="bIu-ov-gtP" id="De4-h7-rGx"/>
+                        <outlet property="episodeStackView" destination="KYT-Rd-JRh" id="X3C-iz-hKj"/>
+                        <outlet property="locationDimensionTextField" destination="eYB-nD-5zH" id="ReR-Yw-ObU"/>
+                        <outlet property="locationNameTextField" destination="zvM-ht-MWo" id="ouu-GI-eJo"/>
+                        <outlet property="locationStackView" destination="wIa-h3-uKc" id="9to-xd-FFh"/>
+                        <outlet property="locationTypeTextField" destination="q4Z-1g-6c4" id="Xxu-bb-kNd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8oi-xA-mf1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,8 +364,8 @@
                         <color key="sectionIndexColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Nad-QA-B6r">
-                            <rect key="frame" x="0.0" y="230" width="320" height="43"/>
+                        <toolbar key="tableFooterView" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="Nad-QA-B6r">
+                            <rect key="frame" x="0.0" y="230" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <items>
@@ -150,10 +390,6 @@
                             </items>
                             <color key="tintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="barTintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <toolbarAppearance key="standardAppearance">
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="shadowColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbarAppearance>
                         </toolbar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" rowHeight="76" id="7Kp-MJ-LF5" customClass="CharacterCell" customModule="RickAndMortyPedia" customModuleProvider="target">
@@ -235,7 +471,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Сортировка" id="fV5-iJ-kv2">
                             <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="a6r-Wm-aDE" kind="show" id="NGH-aE-3VC"/>
+                                <action selector="filterButtonTapped:" destination="Bmg-Ar-0iH" id="Qzo-gZ-z6M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -243,6 +479,7 @@
                         <outlet property="backButton" destination="kZv-lp-I2k" id="bkg-nL-aTz"/>
                         <outlet property="forwardButton" destination="9Vr-Sh-ovv" id="D5p-z9-krx"/>
                         <segue destination="QsE-td-Ghn" kind="show" identifier="goToDetails" id="3fn-Qq-ldx"/>
+                        <segue destination="a6r-Wm-aDE" kind="show" identifier="goToFilter" id="ShJ-r1-iTE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYj-xQ-ktS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -293,6 +530,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

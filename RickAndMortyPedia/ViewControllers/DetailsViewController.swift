@@ -9,11 +9,10 @@ import UIKit
 
 final class DetailsViewController: UIViewController {
     
-//    @IBOutlet var contentImageView: UIImageView!
     @IBOutlet var contentTextView: UITextView!
-    let imageView = UIImageView()
+    let characterImageView = UIImageView()
     
-    var categoryName: CategoryNames!
+    var category: Category!
     var character: Character!
     var location: Location!
     var episode: Episode!
@@ -23,10 +22,9 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
-//        contentTextView.backgroundColor.
         contentTextView.text = getDetails()
         
-        switch categoryName {
+        switch category {
         case .characters:
             title = character.name
         case .locations:
@@ -35,7 +33,6 @@ final class DetailsViewController: UIViewController {
             title = episode.name
         }
     }
-
 }
 
 extension DetailsViewController {
@@ -43,15 +40,15 @@ extension DetailsViewController {
         var details = """
 """
         
-        switch categoryName {
+        switch category {
         case .characters:
-            imageView.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-            contentTextView.textContainer.exclusionPaths = [UIBezierPath(rect: imageView.frame)]
-            contentTextView.addSubview(imageView)
+            characterImageView.frame = CGRect(x: 0, y: 0, width: 145, height: 145)
+            contentTextView.textContainer.exclusionPaths = [UIBezierPath(rect: characterImageView.frame)]
+            contentTextView.addSubview(characterImageView)
             networkManager.fetchImage(from: character.image) { [weak self] result in
                 switch result {
                 case .success(let image):
-                    self?.imageView.image = UIImage(data: image)
+                    self?.characterImageView.image = UIImage(data: image)
                 case .failure(let error):
                     print(error)
                 }
@@ -62,10 +59,8 @@ extension DetailsViewController {
 Вид: \(character.species)
 Тип: \(character.type)
 Пол: \(character.gender)
-Происхождение: \(character.origin.name)
-\(character.origin.url)
-Последнее известное местоположение: \(character.location.name)
-\(character.location.url)
+Происхождение: \(character.origin.name) \(character.origin.url)
+Последнее известное местоположение: \(character.location.name) \(character.location.url)
 Появлялся в эпизодах: \(character.episode[0])
 Дата внесения в базу: \(character.created)
 """

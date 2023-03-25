@@ -20,6 +20,7 @@
 		4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */; };
 		4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */; };
 		4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC929CC58CF0053CD2F /* CategoryCell.swift */; };
+		4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		4D353BC929CC58CF0053CD2F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */,
 				4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */,
 				4D353BC029CC56300053CD2F /* DetailsViewController.swift */,
+				4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				4D353BBD29CC4B8F0053CD2F /* NetworkManager.swift in Sources */,
 				4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */,
 				4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */,
+				4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */,
 				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,
 				4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */,
