@@ -123,7 +123,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="clearButtonTapped" destination="a6r-Wm-aDE" eventType="touchUpInside" id="YhI-pV-XXj"/>
-                                            <segue destination="lW1-Xa-ZMl" kind="unwind" unwindAction="unwindFor:" id="sUB-kd-hLF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKw-Zu-C7R">
@@ -141,7 +140,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="applyButtonTapped:" destination="a6r-Wm-aDE" eventType="touchUpInside" id="uGE-Ag-Aq8"/>
-                                            <segue destination="lW1-Xa-ZMl" kind="unwind" unwindAction="unwindFor:" id="wji-xO-i5C"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -349,6 +347,7 @@
                         <outlet property="locationNameTextField" destination="zvM-ht-MWo" id="ouu-GI-eJo"/>
                         <outlet property="locationStackView" destination="wIa-h3-uKc" id="9to-xd-FFh"/>
                         <outlet property="locationTypeTextField" destination="q4Z-1g-6c4" id="Xxu-bb-kNd"/>
+                        <segue destination="lW1-Xa-ZMl" kind="unwind" identifier="goToContentList" unwindAction="unwindFor:" id="UOM-db-ZeE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8oi-xA-mf1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -482,7 +481,7 @@
                         <outlet property="backButton" destination="kZv-lp-I2k" id="bkg-nL-aTz"/>
                         <outlet property="forwardButton" destination="9Vr-Sh-ovv" id="D5p-z9-krx"/>
                         <segue destination="QsE-td-Ghn" kind="show" identifier="goToDetails" id="3fn-Qq-ldx"/>
-                        <segue destination="a6r-Wm-aDE" kind="show" identifier="goToFilter" id="ShJ-r1-iTE"/>
+                        <segue destination="a6r-Wm-aDE" kind="show" identifier="goToFilter" destinationCreationSelector="goToFilter:" id="ShJ-r1-iTE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYj-xQ-ktS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

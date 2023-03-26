@@ -80,7 +80,7 @@ class FilterViewController: UIViewController {
                 characterStatusTextField.text != "dead" &&
                 characterStatusTextField.text != "unknown" {
                 showAlert(withStatus: .wrongStatusInput)
-                break
+                return
             }
             if characterGenderTextField.text != "" &&
                 characterGenderTextField.text != "female" &&
@@ -88,7 +88,7 @@ class FilterViewController: UIViewController {
                 characterGenderTextField.text != "genderless" &&
                 characterGenderTextField.text != "unknown" {
                 showAlert(withStatus: .wrongStatusInput)
-                break
+                return
             }
             filterCharacters()
         case .locations:
@@ -96,6 +96,7 @@ class FilterViewController: UIViewController {
         default:
             filterEpisodes()
         }
+        performSegue(withIdentifier: "goToContentList", sender: nil)
     }
     deinit {
         print("123321")
@@ -173,7 +174,6 @@ private extension FilterViewController {
                 filtersCount += 1
             }
         }
-        print(urlWithFilters)
     }
     
     func filterCharacters() {

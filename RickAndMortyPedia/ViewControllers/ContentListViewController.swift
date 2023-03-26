@@ -47,6 +47,9 @@ final class ContentListViewController: UITableViewController {
     }
     
     // MARK: - IBActions
+    
+    
+    
     @IBAction func filterButtonTapped(_ sender: Any) {
         switch category {
         case .characters:
