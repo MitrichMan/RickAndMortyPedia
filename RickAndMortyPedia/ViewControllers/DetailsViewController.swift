@@ -79,13 +79,6 @@ extension DetailsViewController {
 Код эпизода: \(episode.episode)
 Список персонажей, замеченых в эпизоде: \(episode.characters[0])
 Дата внесения в базу: \(episode.created)
-    let id: Int
-    let name: String
-    let air_date: String
-    let episode: String
-    let characters: [URL]
-    let url: URL
-    let created: String
 """
         }
         return details

@@ -38,18 +38,15 @@ final class ContentListViewController: UITableViewController {
     
     private var episodeNameFilter = ""
     private var episodeCodeFilter = ""
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         title = category.title
+        setUpNavigationBar()
     }
     
     // MARK: - IBActions
-    
-    
-    
     @IBAction func filterButtonTapped(_ sender: Any) {
         switch category {
         case .characters:
@@ -91,9 +88,6 @@ final class ContentListViewController: UITableViewController {
     }
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         guard let filterVC = segue.source as? FilterViewController else { return }
-//        url = filterVC.url
-//        category = filterVC.category
-//        fetch(filterVC.category)
         switch category {
         case .characters:
             characterNameFilter = filterVC.characterNameTextField.text ?? ""
@@ -101,22 +95,13 @@ final class ContentListViewController: UITableViewController {
             characterSpeciesFilter = filterVC.characterSpeciesTextField.text ?? ""
             characterTypeFilter = filterVC.characterTypeTextField.text ?? ""
             characterGenderFilter = filterVC.characterGenderTextField.text ?? ""
-//            if characters.results.isEmpty {
-//                showAlert(withStatus: .noContent)
-//            }
         case .locations:
             locationNameFilter = filterVC.locationNameTextField.text ?? ""
             locationTypeFilter = filterVC.locationTypeTextField.text ?? ""
             locationDimensionFilter = filterVC.episodeNameTextField.text ?? ""
-//            if locations.results.isEmpty {
-//                showAlert(withStatus: .noContent)
-//            }
         default:
             episodeNameFilter = filterVC.episodeCodeTextField.text ?? ""
             episodeCodeFilter = filterVC.characterNameTextField.text ?? ""
-//            if episodes.results.isEmpty {
-//                showAlert(withStatus: .noContent)
-//            }
         }
     }
     
@@ -205,6 +190,12 @@ final class ContentListViewController: UITableViewController {
     }
     
     // MARK: - Private Methods
+    private  func setUpNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    
     private func getNameForCell(at indexPath: Int) -> String {
         var name = ""
         
