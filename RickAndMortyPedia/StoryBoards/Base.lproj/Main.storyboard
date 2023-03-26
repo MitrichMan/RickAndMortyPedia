@@ -147,7 +147,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ioe-T6-Kiq">
-                                <rect key="frame" x="16" y="0.0" width="288" height="393"/>
+                                <rect key="frame" x="16" y="92.5" width="288" height="393"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFn-pp-yQw">
                                         <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
@@ -229,7 +229,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="wIa-h3-uKc">
-                                <rect key="frame" x="16" y="0.0" width="288" height="233"/>
+                                <rect key="frame" x="16" y="92.5" width="288" height="233"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYM-cu-VeA">
                                         <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
@@ -281,7 +281,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="KYT-Rd-JRh">
-                                <rect key="frame" x="16" y="0.0" width="288" height="153"/>
+                                <rect key="frame" x="16" y="92.5" width="288" height="153"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1In-Nh-AVq">
                                         <rect key="frame" x="0.0" y="0.0" width="117.5" height="32"/>
@@ -482,7 +482,7 @@
                         <outlet property="backButton" destination="kZv-lp-I2k" id="bkg-nL-aTz"/>
                         <outlet property="forwardButton" destination="9Vr-Sh-ovv" id="D5p-z9-krx"/>
                         <segue destination="QsE-td-Ghn" kind="show" identifier="goToDetails" id="3fn-Qq-ldx"/>
-                        <segue destination="a6r-Wm-aDE" kind="presentation" identifier="goToFilter" modalPresentationStyle="fullScreen" id="ShJ-r1-iTE"/>
+                        <segue destination="a6r-Wm-aDE" kind="show" identifier="goToFilter" id="ShJ-r1-iTE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYj-xQ-ktS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

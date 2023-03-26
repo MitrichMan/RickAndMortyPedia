@@ -30,13 +30,27 @@ class FilterViewController: UIViewController {
     
     var url: URL!
     var category: Category!
+    
+    var characterNameFilter = ""
+    var characterStatusFilter = ""
+    var characterSpeciesFilter = ""
+    var characterTypeFilter = ""
+    var characterGenderFilter = ""
+    
+    var locationNameFilter = ""
+    var locationTypeFilter = ""
+    var locationDimensionFilter = ""
+    
+    var episodeNameFilter = ""
+    var episodeCodeFilter = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         title = category.title
         
-        setUpPlaceholders()
         setUpFilters()
+        setUpPlaceholders()
     }
     
     // MARK: - IBActions
@@ -125,12 +139,25 @@ private extension FilterViewController {
     func setUpFilters() {
         switch category {
         case .characters:
+            characterNameTextField.text = characterNameFilter
+            characterStatusTextField.text = characterStatusFilter
+            characterSpeciesTextField.text = characterSpeciesFilter
+            characterTypeTextField.text = characterTypeFilter
+            characterGenderTextField.text = characterGenderFilter
+            
             locationStackView.isHidden = true
             episodeStackView.isHidden = true
         case .locations:
+            locationNameTextField.text = locationNameFilter
+            locationTypeTextField.text = locationTypeFilter
+            locationDimensionTextField.text = locationDimensionFilter
+            
             characterStackView.isHidden = true
             episodeStackView.isHidden = true
         default:
+            episodeNameTextField.text = episodeNameFilter
+            episodeCodeTextField.text = episodeCodeFilter
+            
             characterStackView.isHidden = true
             locationStackView.isHidden = true
         }
@@ -141,11 +168,12 @@ private extension FilterViewController {
             if filtersCount == 0 {
                 urlWithFilters = "\(urlWithFilters)/?\(query)=\(textField.text ?? "")"
                 filtersCount += 1
-            } else {
+            } else if filtersCount != 0 {
                 urlWithFilters = "\(urlWithFilters)&\(query)=\(textField.text ?? "")"
                 filtersCount += 1
             }
         }
+        print(urlWithFilters)
     }
     
     func filterCharacters() {

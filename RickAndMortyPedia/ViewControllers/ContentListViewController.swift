@@ -104,13 +104,13 @@ final class ContentListViewController: UITableViewController {
         case .locations:
             locationNameFilter = filterVC.locationNameTextField.text ?? ""
             locationTypeFilter = filterVC.locationTypeTextField.text ?? ""
-            locationDimensionFilter = filterVC.locationDimensionTextField.text ?? ""
+            locationDimensionFilter = filterVC.episodeNameTextField.text ?? ""
             if locations.results.isEmpty {
                 showAlert(withStatus: .noContent)
             }
         default:
-            episodeNameFilter = filterVC.episodeNameTextField.text ?? ""
-            episodeCodeFilter = filterVC.episodeCodeTextField.text ?? ""
+            episodeNameFilter = filterVC.episodeCodeTextField.text ?? ""
+            episodeCodeFilter = filterVC.characterNameTextField.text ?? ""
             if episodes.results.isEmpty {
                 showAlert(withStatus: .noContent)
             }
@@ -183,21 +183,21 @@ final class ContentListViewController: UITableViewController {
             guard let filterVC = segue.destination as? FilterViewController else { return }
             filterVC.url = url
             filterVC.category = category
-//            switch category {
-//            case .characters:
-//                filterVC.characterNameTextField?.text = characterNameFilter
-//                filterVC.characterSpeciesTextField?.text = characterSpeciesFilter
-//                filterVC.characterStatusTextField?.text = characterStatusFilter
-//                filterVC.characterTypeTextField?.text = characterTypeFilter
-//                filterVC.characterGenderTextField?.text = characterGenderFilter
-//            case .locations:
-//                filterVC.locationNameTextField?.text = locationNameFilter
-//                filterVC.locationTypeTextField?.text = locationTypeFilter
-//                filterVC.locationDimensionTextField?.text = locationDimensionFilter
-//            default:
-//                filterVC.episodeNameTextField?.text = episodeNameFilter
-//                filterVC.episodeCodeTextField?.text = episodeCodeFilter
-//            }
+            switch category {
+            case .characters:
+                filterVC.characterNameFilter = characterNameFilter
+                filterVC.characterSpeciesFilter = characterSpeciesFilter
+                filterVC.characterStatusFilter = characterStatusFilter
+                filterVC.characterTypeFilter = characterTypeFilter
+                filterVC.characterGenderFilter = characterGenderFilter
+            case .locations:
+                filterVC.locationNameFilter = locationNameFilter
+                filterVC.locationTypeFilter = locationTypeFilter
+                filterVC.locationDimensionFilter = locationDimensionFilter
+            default:
+                filterVC.episodeNameFilter = episodeNameFilter
+                filterVC.episodeCodeFilter = episodeCodeFilter
+            }
         }
     }
 }
