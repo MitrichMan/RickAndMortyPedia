@@ -16,6 +16,7 @@ final class DetailsViewController: UIViewController {
     var character: Character!
     var location: Location!
     var episode: Episode!
+    var episodes: [Episode] = []
     
     private let networkManager = NetworkManager.shared
     
@@ -33,9 +34,8 @@ final class DetailsViewController: UIViewController {
             title = episode.name
         }
     }
-}
 
-extension DetailsViewController {
+    // MARK: - private methods
     private func getDetails() -> String {
         var details = """
 """
@@ -59,9 +59,8 @@ extension DetailsViewController {
 Вид: \(character.species)
 Тип: \(character.type)
 Пол: \(character.gender)
-Происхождение: \(character.origin.name) \(character.origin.url)
-Последнее известное местоположение: \(character.location.name) \(character.location.url)
-Появлялся в эпизодах: \(character.episode[0])
+Происхождение: \(character.origin.name)
+Последнее известное местоположение: \(character.location.name)
 Дата внесения в базу: \(character.created)
 """
         case .locations:
@@ -69,7 +68,6 @@ extension DetailsViewController {
 Название: \(location.name)
 Тип: \(location.type)
 Измерение: \(location.dimension)
-Резиденты: \(location.residents[0])
 Дата внесения в базу: \(location.created)
 """
         default:
@@ -77,10 +75,12 @@ extension DetailsViewController {
 Название: \(episode.name)
 Дата выхода в эфир: \(episode.airDate)
 Код эпизода: \(episode.episode)
-Список персонажей, замеченых в эпизоде: \(episode.characters[0])
 Дата внесения в базу: \(episode.created)
 """
         }
         return details
     }
+
 }
+
+
