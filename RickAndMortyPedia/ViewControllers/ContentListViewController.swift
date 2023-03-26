@@ -9,8 +9,8 @@ import UIKit
 
 final class ContentListViewController: UITableViewController {
     
-    @IBOutlet var backButton: UIBarButtonItem!
-    @IBOutlet var forwardButton: UIBarButtonItem!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var forwardButton: UIButton!
     
     var url: URL!
     
@@ -45,6 +45,7 @@ final class ContentListViewController: UITableViewController {
         title = category.title
         setUpNavigationBar()
     }
+
     
     // MARK: - IBActions
     @IBAction func filterButtonTapped(_ sender: Any) {
@@ -59,7 +60,7 @@ final class ContentListViewController: UITableViewController {
         performSegue(withIdentifier: "goToFilter", sender: nil)
     }
     
-    @IBAction func backButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func backButtonTapped(_ sender: Any) {
         switch category {
         case .characters:
             guard let prevLink = characters.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
@@ -72,8 +73,8 @@ final class ContentListViewController: UITableViewController {
             fetchEpisodes(from: prevLinkUrl)
         }
     }
-    
-    @IBAction func forwardButtonTapped(_ sender: UIBarButtonItem) {
+
+    @IBAction func forwardButtonTapped(_ sender: Any) {
         switch category {
         case .characters:
             guard let nextLink = characters.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
@@ -191,7 +192,6 @@ final class ContentListViewController: UITableViewController {
     
     // MARK: - Private Methods
     private  func setUpNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         navigationController?.navigationBar.shadowImage = UIImage()
     }

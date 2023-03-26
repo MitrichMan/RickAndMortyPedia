@@ -13,12 +13,11 @@
         <scene sceneID="mQ4-uR-AYU">
             <objects>
                 <navigationController id="AB1-pV-5Ou" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" largeTitles="YES" id="Pe2-GY-eeU">
+                    <navigationBar key="navigationBar" autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" largeTitles="YES" id="Pe2-GY-eeU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="20"/>
                             <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,6 +29,9 @@
                             <color key="textShadowColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HV9-EB-RZr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="dAv-SS-BuG" kind="relationship" relationship="rootViewController" id="RgF-Da-TbN"/>
                     </connections>
@@ -371,33 +373,52 @@
                         <color key="sectionIndexColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <toolbar key="tableFooterView" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="Nad-QA-B6r">
-                            <rect key="frame" x="0.0" y="230" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <items>
-                                <barButtonItem enabled="NO" style="plain" systemItem="flexibleSpace" id="BYt-JR-YeZ">
-                                    <color key="tintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </barButtonItem>
-                                <barButtonItem title="Назад" id="kZv-lp-I2k">
-                                    <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <stackView key="tableFooterView" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" id="FiA-b3-ygu">
+                            <rect key="frame" x="0.0" y="230" width="320" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyP-Ii-8uj">
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Назад">
+                                        <color key="titleColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="backButtonTapped:" destination="Bmg-Ar-0iH" id="tqO-S4-AH2"/>
+                                        <action selector="backButtonTapped:" destination="Bmg-Ar-0iH" eventType="touchUpInside" id="qR3-eX-Ny3"/>
+                                        <action selector="clearButtonTapped" destination="a6r-Wm-aDE" eventType="touchUpInside" id="Ej8-wh-RuA"/>
                                     </connections>
-                                </barButtonItem>
-                                <barButtonItem title="Вперед" id="9Vr-Sh-ovv">
-                                    <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Xl-fL-vEF">
+                                    <rect key="frame" x="170" y="0.0" width="150" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title=" Вперед">
+                                        <color key="titleColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <integer key="value" value="10"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="forwardButtonTapped:" destination="Bmg-Ar-0iH" id="Aoe-bn-37R"/>
+                                        <action selector="applyButtonTapped:" destination="a6r-Wm-aDE" eventType="touchUpInside" id="FOH-k8-HbD"/>
+                                        <action selector="forwardButtonTapped:" destination="Bmg-Ar-0iH" eventType="touchUpInside" id="U80-Px-pG5"/>
                                     </connections>
-                                </barButtonItem>
-                                <barButtonItem enabled="NO" style="plain" systemItem="flexibleSpace" id="jMg-wF-eqp">
-                                    <color key="tintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </barButtonItem>
-                            </items>
-                            <color key="tintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="barTintColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </toolbar>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="NyP-Ii-8uj" firstAttribute="width" secondItem="2Xl-fL-vEF" secondAttribute="width" id="C8D-ZB-9Aj"/>
+                            </constraints>
+                        </stackView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" rowHeight="76" id="7Kp-MJ-LF5" customClass="CharacterCell" customModule="RickAndMortyPedia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="76"/>
@@ -483,8 +504,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="backButton" destination="kZv-lp-I2k" id="bkg-nL-aTz"/>
-                        <outlet property="forwardButton" destination="9Vr-Sh-ovv" id="D5p-z9-krx"/>
+                        <outlet property="backButton" destination="NyP-Ii-8uj" id="ver-bN-P88"/>
+                        <outlet property="forwardButton" destination="2Xl-fL-vEF" id="89F-lc-zYr"/>
                         <segue destination="QsE-td-Ghn" kind="show" identifier="goToDetails" id="3fn-Qq-ldx"/>
                         <segue destination="a6r-Wm-aDE" kind="show" identifier="goToFilter" id="l8N-YA-IQ7"/>
                     </connections>
@@ -503,7 +524,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If1-xl-dBU">
                                 <rect key="frame" x="20" y="92" width="280" height="456"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="18"/>
