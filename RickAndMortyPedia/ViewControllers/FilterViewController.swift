@@ -29,6 +29,7 @@ class FilterViewController: UIViewController {
     @IBOutlet var episodeCodeTextField: UITextField!
     
     var url: URL!
+    var filteredUrl: URL!
     var category: Category!
     
     var characterNameFilter = ""
@@ -80,6 +81,7 @@ class FilterViewController: UIViewController {
             episodeNameTextField.text = ""
             episodeCodeTextField.text = ""
         }
+        
     }
     
     @IBAction func applyButtonTapped(_ sender: UIButton) {
@@ -207,7 +209,7 @@ private extension FilterViewController {
         filter(by: "type", with: characterTypeTextField, url: &urlWithFilters, count: &filtersCount)
         filter(by: "gender", with: characterGenderTextField, url: &urlWithFilters, count: &filtersCount)
         
-        url = URL(string: urlWithFilters)
+        filteredUrl = URL(string: urlWithFilters)
     }
     
     func filterLocations() {
@@ -219,7 +221,7 @@ private extension FilterViewController {
         filter(by: "type", with: locationTypeTextField, url: &urlWithFilters, count: &filtersCount)
         filter(by: "dimension", with: locationDimensionTextField, url: &urlWithFilters, count: &filtersCount)
         
-        url = URL(string: urlWithFilters)
+        filteredUrl = URL(string: urlWithFilters)
     }
     
     func filterEpisodes() {
@@ -230,7 +232,7 @@ private extension FilterViewController {
         filter(by: "name", with: episodeNameTextField, url: &urlWithFilters, count: &filtersCount)
         filter(by: "episode", with: episodeCodeTextField, url: &urlWithFilters, count: &filtersCount)
         
-        url = URL(string: urlWithFilters)
+        filteredUrl = URL(string: urlWithFilters)
     }
 }
 
@@ -239,11 +241,11 @@ extension FilterViewController {
     func fetch(_ category: Category) {
         switch category {
         case .characters:
-            fetchCharacters(from: url)
+            fetchCharacters(from: filteredUrl)
         case .locations:
-            fetchLocations(from: url)
+            fetchLocations(from: filteredUrl)
         default:
-            fetchEpisodes(from: url)
+            fetchEpisodes(from: filteredUrl)
         }
     }
     
