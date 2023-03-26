@@ -26,6 +26,18 @@ final class ContentListViewController: UITableViewController {
     private var numberOfRows = 0
     private var numberOfPages = 0
     
+    private var characterNameFilter = ""
+    private var characterStatusFilter = ""
+    private var characterSpeciesFilter = ""
+    private var characterTypeFilter = ""
+    private var characterGenderFilter = ""
+    
+    private var locationNameFilter = ""
+    private var locationTypeFilter = ""
+    private var locationDimensionFilter = ""
+    
+    private var episodeNameFilter = ""
+    private var episodeCodeFilter = ""
     
     
     override func viewDidLoad() {
@@ -81,14 +93,24 @@ final class ContentListViewController: UITableViewController {
         fetch(filterVC.category)
         switch category {
         case .characters:
+            characterNameFilter = filterVC.characterNameTextField.text ?? ""
+            characterStatusFilter = filterVC.characterStatusTextField.text ?? ""
+            characterSpeciesFilter = filterVC.characterSpeciesTextField.text ?? ""
+            characterTypeFilter = filterVC.characterTypeTextField.text ?? ""
+            characterGenderFilter = filterVC.characterGenderTextField.text ?? ""
             if characters.results.isEmpty {
                 showAlert(withStatus: .noContent)
             }
         case .locations:
+            locationNameFilter = filterVC.locationNameTextField.text ?? ""
+            locationTypeFilter = filterVC.locationTypeTextField.text ?? ""
+            locationDimensionFilter = filterVC.locationDimensionTextField.text ?? ""
             if locations.results.isEmpty {
                 showAlert(withStatus: .noContent)
             }
         default:
+            episodeNameFilter = filterVC.episodeNameTextField.text ?? ""
+            episodeCodeFilter = filterVC.episodeCodeTextField.text ?? ""
             if episodes.results.isEmpty {
                 showAlert(withStatus: .noContent)
             }
@@ -161,6 +183,21 @@ final class ContentListViewController: UITableViewController {
             guard let filterVC = segue.destination as? FilterViewController else { return }
             filterVC.url = url
             filterVC.category = category
+//            switch category {
+//            case .characters:
+//                filterVC.characterNameTextField?.text = characterNameFilter
+//                filterVC.characterSpeciesTextField?.text = characterSpeciesFilter
+//                filterVC.characterStatusTextField?.text = characterStatusFilter
+//                filterVC.characterTypeTextField?.text = characterTypeFilter
+//                filterVC.characterGenderTextField?.text = characterGenderFilter
+//            case .locations:
+//                filterVC.locationNameTextField?.text = locationNameFilter
+//                filterVC.locationTypeTextField?.text = locationTypeFilter
+//                filterVC.locationDimensionTextField?.text = locationDimensionFilter
+//            default:
+//                filterVC.episodeNameTextField?.text = episodeNameFilter
+//                filterVC.episodeCodeTextField?.text = episodeCodeFilter
+//            }
         }
     }
 }

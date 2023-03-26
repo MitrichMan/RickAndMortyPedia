@@ -82,7 +82,17 @@ class FilterViewController: UIViewController {
         default:
             filterEpisodes()
         }
-        dismiss(animated: true)
+    }
+    deinit {
+        print("123321")
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let contentListVC = segue.destination as? ContentListViewController else { return }
+        contentListVC.category = category
+        contentListVC.url = url
+        contentListVC.fetch(category)
     }
 }
 
