@@ -17,14 +17,14 @@ final class ContentListViewController: UITableViewController {
     var categories: Categories!
     var category: Category!
     
+    var characters: Characters!
+    var locations: Locations!
+    var episodes: Episodes!
+    
+     var numberOfRows = 0
+     var numberOfPages = 0
+    
     private let networkManager = NetworkManager.shared
-    
-    private var characters: Characters!
-    private var locations: Locations!
-    private var episodes: Episodes!
-    
-    private var numberOfRows = 0
-    private var numberOfPages = 0
     
     private var characterNameFilter = ""
     private var characterStatusFilter = ""
@@ -91,9 +91,9 @@ final class ContentListViewController: UITableViewController {
     }
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         guard let filterVC = segue.source as? FilterViewController else { return }
-        url = filterVC.url
-        category = filterVC.category
-        fetch(filterVC.category)
+//        url = filterVC.url
+//        category = filterVC.category
+//        fetch(filterVC.category)
         switch category {
         case .characters:
             characterNameFilter = filterVC.characterNameTextField.text ?? ""
@@ -101,22 +101,22 @@ final class ContentListViewController: UITableViewController {
             characterSpeciesFilter = filterVC.characterSpeciesTextField.text ?? ""
             characterTypeFilter = filterVC.characterTypeTextField.text ?? ""
             characterGenderFilter = filterVC.characterGenderTextField.text ?? ""
-            if characters.results.isEmpty {
-                showAlert(withStatus: .noContent)
-            }
+//            if characters.results.isEmpty {
+//                showAlert(withStatus: .noContent)
+//            }
         case .locations:
             locationNameFilter = filterVC.locationNameTextField.text ?? ""
             locationTypeFilter = filterVC.locationTypeTextField.text ?? ""
             locationDimensionFilter = filterVC.episodeNameTextField.text ?? ""
-            if locations.results.isEmpty {
-                showAlert(withStatus: .noContent)
-            }
+//            if locations.results.isEmpty {
+//                showAlert(withStatus: .noContent)
+//            }
         default:
             episodeNameFilter = filterVC.episodeCodeTextField.text ?? ""
             episodeCodeFilter = filterVC.characterNameTextField.text ?? ""
-            if episodes.results.isEmpty {
-                showAlert(withStatus: .noContent)
-            }
+//            if episodes.results.isEmpty {
+//                showAlert(withStatus: .noContent)
+//            }
         }
     }
     
@@ -203,6 +203,21 @@ final class ContentListViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: - Private Methods
+    private func getNameForCell(at indexPath: Int) -> String {
+        var name = ""
+        
+        switch category {
+        case .characters:
+            name = characters.results[indexPath].name
+        case .locations:
+            name = locations.results[indexPath].name
+        default:
+            name = episodes.results[indexPath].name
+        }
+        return name
+    }
 }
 
 // MARK: - Networking
@@ -224,7 +239,7 @@ extension ContentListViewController {
             case .success(let characters):
                 self?.characters = characters
                 self?.numberOfRows = characters.results.count
-                self?.numberOfPages = characters.info.pages 
+                self?.numberOfPages = characters.info.pages
                 self?.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -261,19 +276,5 @@ extension ContentListViewController {
                 self?.showAlert(withStatus: .failed)
             }
         }
-    }
-        
-    private func getNameForCell(at indexPath: Int) -> String {
-        var name = ""
-        
-        switch category {
-        case .characters:
-            name = characters.results[indexPath].name
-        case .locations:
-            name = locations.results[indexPath].name
-        default:
-            name = episodes.results[indexPath].name
-        }
-        return name
     }
 }

@@ -44,6 +44,16 @@ class FilterViewController: UIViewController {
     var episodeNameFilter = ""
     var episodeCodeFilter = ""
     
+    private let networkManager = NetworkManager.shared
+    
+    private var characters: Characters!
+    private var locations: Locations!
+    private var episodes: Episodes!
+    
+    private var numberOfRows = 0
+    private var numberOfPages = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
@@ -91,23 +101,33 @@ class FilterViewController: UIViewController {
                 return
             }
             filterCharacters()
+            fetch(.characters)
         case .locations:
             filterLocations()
+            fetch(.locations)
         default:
             filterEpisodes()
+            fetch(.episodes)
         }
-        performSegue(withIdentifier: "goToContentList", sender: nil)
-    }
-    deinit {
-        print("123321")
+//        performSegue(withIdentifier: "goToContentList", sender: nil)
+        
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let contentListVC = segue.destination as? ContentListViewController else { return }
         contentListVC.category = category
-        contentListVC.url = url
-        contentListVC.fetch(category)
+        contentListVC.numberOfRows = numberOfRows
+        contentListVC.numberOfPages = numberOfPages
+        switch category {
+        case .characters:
+            contentListVC.characters = characters
+        case .locations:
+            contentListVC.locations = locations
+        default:
+            contentListVC.episodes = episodes
+        }
+        contentListVC.tableView.reloadData()
     }
 }
 
@@ -211,6 +231,66 @@ private extension FilterViewController {
         filter(by: "episode", with: episodeCodeTextField, url: &urlWithFilters, count: &filtersCount)
         
         url = URL(string: urlWithFilters)
+    }
+}
+
+// MARK: - Networking
+extension FilterViewController {
+    func fetch(_ category: Category) {
+        switch category {
+        case .characters:
+            fetchCharacters(from: url)
+        case .locations:
+            fetchLocations(from: url)
+        default:
+            fetchEpisodes(from: url)
+        }
+    }
+    
+    private func fetchCharacters(from link: URL) {
+        networkManager.fetch(Characters.self, from: link) { [weak self] result in
+            switch result {
+            case .success(let characters):
+                self?.characters = characters
+                self?.numberOfRows = characters.results.count
+                self?.numberOfPages = characters.info.pages
+                self?.performSegue(withIdentifier: "goToContentList", sender: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .noContent)
+                break
+            }
+        }
+    }
+    
+    private func fetchLocations(from link: URL) {
+        networkManager.fetch(Locations.self, from: link) { [weak self] result in
+            switch result {
+            case .success(let locations):
+                self?.locations = locations
+                self?.numberOfRows = locations.results.count
+                self?.numberOfPages = locations.info.pages
+                self?.performSegue(withIdentifier: "goToContentList", sender: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
+            }
+        }
+    }
+    
+    private func fetchEpisodes(from link: URL) {
+        networkManager.fetch(Episodes.self, from: link) { [weak self] result in
+            switch result {
+            case .success(let episodes):
+                self?.episodes = episodes
+                self?.numberOfRows = episodes.results.count
+                self?.numberOfPages = episodes.info.pages
+                self?.performSegue(withIdentifier: "goToContentList", sender: nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
+            }
+        }
     }
 }
 

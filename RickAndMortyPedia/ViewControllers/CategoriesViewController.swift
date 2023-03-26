@@ -14,7 +14,7 @@ final class CategoriesViewController: UICollectionViewController {
     private var categories: Categories!
     
     private var contentUrl: URL!
-    private var contentCategory: Category!
+    private var category: Category!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +26,9 @@ final class CategoriesViewController: UICollectionViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let contentListVC = segue.destination as? ContentListViewController
         contentListVC?.url = contentUrl
-        contentListVC?.fetch(contentCategory)
+        contentListVC?.fetch(category)
         contentListVC?.categories = categories
-        contentListVC?.category = contentCategory
+        contentListVC?.category = category
     }
 
     // MARK: UICollectionViewDataSource
@@ -50,13 +50,13 @@ final class CategoriesViewController: UICollectionViewController {
         switch categoryButton {
         case .characters:
             contentUrl = categories.characters
-            contentCategory = Category.characters
+            category = Category.characters
         case .locations:
             contentUrl = categories.locations
-            contentCategory = Category.locations
+            category = Category.locations
         case .episodes:
             contentUrl = categories.episodes
-            contentCategory = Category.episodes
+            category = Category.episodes
         }
         performSegue(withIdentifier: "goToContentList", sender: nil)
     }
