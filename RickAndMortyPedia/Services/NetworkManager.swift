@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum Link {
     case base
@@ -13,7 +14,7 @@ enum Link {
     var url: URL {
         switch self {
         case .base:
-            return URL(string: "https://rickandmortyapi.com/api")!
+            return URL(string: "https://rickandmortyapi.com/api/character")!
         }
     }
 }

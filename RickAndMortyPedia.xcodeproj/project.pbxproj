@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0ED16729D18D6700BCCBE3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4D0ED16629D18D6700BCCBE3 /* Alamofire */; };
 		4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D179B4329CDBA79009F8E67 /* CharacterCell.swift */; };
-		4D179B4629CDBE8F009F8E67 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D179B4529CDBE8F009F8E67 /* ContentCell.swift */; };
 		4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */; };
 		4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BA329CC4A7A0053CD2F /* SceneDelegate.swift */; };
 		4D353BA929CC4A7A0053CD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D353BA729CC4A7A0053CD2F /* Main.storyboard */; };
@@ -19,14 +19,12 @@
 		4D353BC129CC56300053CD2F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC029CC56300053CD2F /* DetailsViewController.swift */; };
 		4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */; };
 		4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */; };
-		4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC929CC58CF0053CD2F /* CategoryCell.swift */; };
 		4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */; };
 		4DA77EF129CF426600FBC35C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EF029CF426600FBC35C /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D179B4329CDBA79009F8E67 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
-		4D179B4529CDBE8F009F8E67 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		4D353B9E29CC4A7A0053CD2F /* RickAndMortyPedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyPedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D353BA329CC4A7A0053CD2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +37,6 @@
 		4D353BC029CC56300053CD2F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
-		4D353BC929CC58CF0053CD2F /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4DA77EF029CF426600FBC35C /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0ED16729D18D6700BCCBE3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,9 +133,7 @@
 		4D353BC629CC587F0053CD2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D353BC929CC58CF0053CD2F /* CategoryCell.swift */,
 				4D179B4329CDBA79009F8E67 /* CharacterCell.swift */,
-				4D179B4529CDBE8F009F8E67 /* ContentCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +162,9 @@
 			dependencies = (
 			);
 			name = RickAndMortyPedia;
+			packageProductDependencies = (
+				4D0ED16629D18D6700BCCBE3 /* Alamofire */,
+			);
 			productName = RickAndMortyPedia;
 			productReference = 4D353B9E29CC4A7A0053CD2F /* RickAndMortyPedia.app */;
 			productType = "com.apple.product-type.application";
@@ -194,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 4D353B9529CC4A7A0053CD2F;
+			packageReferences = (
+				4D0ED16529D18D6700BCCBE3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 4D353B9F29CC4A7A0053CD2F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -229,8 +231,6 @@
 				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,
 				4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */,
-				4D353BCA29CC58CF0053CD2F /* CategoryCell.swift in Sources */,
-				4D179B4629CDBE8F009F8E67 /* ContentCell.swift in Sources */,
 				4D353BBA29CC4B490053CD2F /* Categories.swift in Sources */,
 				4D353BC129CC56300053CD2F /* DetailsViewController.swift in Sources */,
 			);
@@ -456,6 +456,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D0ED16529D18D6700BCCBE3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D0ED16629D18D6700BCCBE3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D0ED16529D18D6700BCCBE3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4D353B9629CC4A7A0053CD2F /* Project object */;
 }

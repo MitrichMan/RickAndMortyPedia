@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class ContentListViewController: UITableViewController {
     
@@ -21,8 +22,7 @@ final class ContentListViewController: UITableViewController {
     var locations: Locations!
     var episodes: Episodes!
     
-     var numberOfRows = 0
-     var numberOfPages = 0
+    var numberOfRows = 0
     
     private let networkManager = NetworkManager.shared
     
@@ -38,234 +38,190 @@ final class ContentListViewController: UITableViewController {
     
     private var episodeNameFilter = ""
     private var episodeCodeFilter = ""
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
-        title = category.title
-        setUpNavigationBar()
+        title = "Characters"
+//        fetchCharacters(from: Link.base.url)
+        fetchCharacters1()
     }
-
+    
     
     // MARK: - IBActions
     @IBAction func filterButtonTapped(_ sender: Any) {
-        switch category {
-        case .characters:
-            url = categories.characters
-        case .locations:
-            url = categories.locations
-        default:
-            url = categories.episodes
-        }
+        url = Link.base.url
         performSegue(withIdentifier: "goToFilter", sender: nil)
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        switch category {
-        case .characters:
-            guard let prevLink = characters.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
-            fetchCharacters(from: prevLinkUrl)
-        case . locations:
-            guard let prevLink = locations.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
-            fetchLocations(from: prevLinkUrl)
-        default:
-            guard let prevLink = episodes.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
-            fetchEpisodes(from: prevLinkUrl)
-        }
+        guard let prevLink = characters.info.prev, let prevLinkUrl = URL(string: prevLink) else { return }
+        fetchCharacters(from: prevLinkUrl)
     }
 
     @IBAction func forwardButtonTapped(_ sender: Any) {
-        switch category {
-        case .characters:
-            guard let nextLink = characters.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
-            fetchCharacters(from: nextLinkUrl)
-        case . locations:
-            guard let nextLink = locations.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
-            fetchLocations(from: nextLinkUrl)
-        default:
-            guard let nextLink = episodes.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
-            fetchEpisodes(from: nextLinkUrl)
-        }
+        guard let nextLink = characters.info.next, let nextLinkUrl = URL(string: nextLink) else { return }
+        fetchCharacters(from: nextLinkUrl)
     }
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         guard let filterVC = segue.source as? FilterViewController else { return }
-        switch category {
-        case .characters:
-            characterNameFilter = filterVC.characterNameTextField.text ?? ""
-            characterStatusFilter = filterVC.characterStatusTextField.text ?? ""
-            characterSpeciesFilter = filterVC.characterSpeciesTextField.text ?? ""
-            characterTypeFilter = filterVC.characterTypeTextField.text ?? ""
-            characterGenderFilter = filterVC.characterGenderTextField.text ?? ""
-        case .locations:
-            locationNameFilter = filterVC.locationNameTextField.text ?? ""
-            locationTypeFilter = filterVC.locationTypeTextField.text ?? ""
-            locationDimensionFilter = filterVC.episodeNameTextField.text ?? ""
-        default:
-            episodeNameFilter = filterVC.episodeCodeTextField.text ?? ""
-            episodeCodeFilter = filterVC.characterNameTextField.text ?? ""
-        }
+        characterNameFilter = filterVC.characterNameTextField.text ?? ""
+        characterStatusFilter = filterVC.characterStatusTextField.text ?? ""
+        characterSpeciesFilter = filterVC.characterSpeciesTextField.text ?? ""
+        characterTypeFilter = filterVC.characterTypeTextField.text ?? ""
+        characterGenderFilter = filterVC.characterGenderTextField.text ?? ""
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         numberOfRows
     }
-
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         var cell: UITableViewCell
-         
-         switch category {
-         case .characters:
-            cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath)
-             guard let cell = cell as? CharacterCell else { return UITableViewCell() }
-             cell.characterNameLabel.text = getNameForCell(at: indexPath.row)
-             networkManager.fetchImage(from: characters.results[indexPath.row].image) { result in
-                 switch result {
-                 case .success(let image):
-                     cell.characterImageView.image = UIImage(data: image)
-                 case .failure(let error):
-                     print(error)
-                 }
-             }
-         case .locations:
-             cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath)
-             guard let cell = cell as? ContentCell else { return UITableViewCell() }
-             cell.contentNameLabel.text = locations.results[indexPath.row].name
-         default:
-             cell = tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath)
-             guard let cell = cell as? ContentCell else { return UITableViewCell() }
-             cell.contentNameLabel.text = episodes.results[indexPath.row].name
-         }
-         return cell
-     }
-
-    // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch category {
-        case .characters:
-            let character = characters.results[indexPath.row]
-            performSegue(withIdentifier: "goToDetails", sender: character)
-        case .locations:
-            let location = locations.results[indexPath.row]
-            performSegue(withIdentifier: "goToDetails", sender: location)
-        default:
-            let episode = episodes.results[indexPath.row]
-            performSegue(withIdentifier: "goToDetails", sender: episode)
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell
+        cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath)
+        guard let cell = cell as? CharacterCell else { return UITableViewCell() }
+        cell.characterNameLabel.text = characters.results[indexPath.row].name
+        networkManager.fetchImage(from: characters.results[indexPath.row].image) { result in
+            switch result {
+            case .success(let image):
+                cell.characterImageView.image = UIImage(data: image)
+            case .failure(let error):
+                print(error)
+            }
         }
+        return cell
     }
     
-     // MARK: - Navigation
+    // MARK: - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToDetails", sender: characters.results[indexPath.row])
+    }
+    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDetails" {
             guard let detailsVC = segue.destination as? DetailsViewController else { return }
             detailsVC.category = category
-            switch category {
-            case .characters:
-                detailsVC.character = sender as? Character
-            case .locations:
-                detailsVC.location = sender as? Location
-            default:
-                detailsVC.episode = sender as? Episode
-            }
+            detailsVC.character = sender as? Character
         } else {
             guard let filterVC = segue.destination as? FilterViewController else { return }
             filterVC.url = url
             filterVC.category = category
-            switch category {
-            case .characters:
-                filterVC.characterNameFilter = characterNameFilter
-                filterVC.characterSpeciesFilter = characterSpeciesFilter
-                filterVC.characterStatusFilter = characterStatusFilter
-                filterVC.characterTypeFilter = characterTypeFilter
-                filterVC.characterGenderFilter = characterGenderFilter
-            case .locations:
-                filterVC.locationNameFilter = locationNameFilter
-                filterVC.locationTypeFilter = locationTypeFilter
-                filterVC.locationDimensionFilter = locationDimensionFilter
-            default:
-                filterVC.episodeNameFilter = episodeNameFilter
-                filterVC.episodeCodeFilter = episodeCodeFilter
-            }
+            filterVC.characterNameFilter = characterNameFilter
+            filterVC.characterSpeciesFilter = characterSpeciesFilter
+            filterVC.characterStatusFilter = characterStatusFilter
+            filterVC.characterTypeFilter = characterTypeFilter
+            filterVC.characterGenderFilter = characterGenderFilter
         }
     }
+}
     
-    // MARK: - Private Methods
-    private  func setUpNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-    private func getNameForCell(at indexPath: Int) -> String {
-        var name = ""
+    // MARK: - Networking
+    extension ContentListViewController {
+        private func fetchCharacters(from link: URL) {
+            networkManager.fetch(Characters.self, from: link) { [weak self] result in
+                switch result {
+                case .success(let characters):
+                    self?.characters = characters
+                    self?.numberOfRows = characters.results.count
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self?.showAlert(withStatus: .failed)
+                }
+            }
+        }
         
-        switch category {
-        case .characters:
-            name = characters.results[indexPath].name
-        case .locations:
-            name = locations.results[indexPath].name
-        default:
-            name = episodes.results[indexPath].name
-        }
-        return name
-    }
-}
+        private func fetchCharacters1() {
+            AF.request(Link.base.url)
+                .responseJSON { [weak self] dataResponse in
+                    guard let statusCode = dataResponse.response?.statusCode else { return }
+                    if (200..<300).contains(statusCode) {
+                        guard let charactersData = dataResponse.value as? [String: Any] else { return }
+                        guard let charactersInfo = charactersData["info"] as? [String: Any] else { return }
+                        guard let charactersResults = charactersData["results"] as? [[String: Any]] else { return }
+                        
+                        var results: [Character] = []
+                        
+                        for charactersResult in charactersResults {
+                            guard let characterOrigin = charactersResult["origin"] as? [String: Any] else { return }
+                            guard let characterLocation = charactersResult["location"] as? [String: Any] else { return }
+                            
+                            let origin = CharacterLocation(
+                                name: characterOrigin["name"] as? String ?? "",
+                                url: characterOrigin["url"] as? String ?? ""
+                            )
 
-// MARK: - Networking
-extension ContentListViewController {
-    func fetch(_ category: Category) {
-        switch category {
-        case .characters:
-            fetchCharacters(from: url)
-        case .locations:
-            fetchLocations(from: url)
-        default:
-            fetchEpisodes(from: url)
+                            let location = CharacterLocation(
+                                name: characterLocation["name"] as? String ?? "",
+                                url: characterLocation["url"] as? String ?? ""
+                            )
+                            
+                            let result = Character(
+                                id: charactersResult["id"] as? Int ?? 0,
+                                name: charactersResult["name"] as? String ?? "",
+                                status: charactersResult["status"] as? String ?? "",
+                                species: charactersResult["species"] as? String ?? "",
+                                type: charactersResult["type"] as? String ?? "",
+                                gender: charactersResult["gender"] as? String ?? "",
+                                origin: origin,
+                                location: location,
+                                image: charactersResult["image"] as? String ?? "",
+                                episode: charactersResult["episode"] as? [String] ?? [],
+                                url: charactersResult["url"] as? String ?? "",
+                                created: charactersResult["created"] as? String ?? ""
+                            )
+                            
+                            results.append(result)
+                        }
+                        let characters = Characters(
+                            info: Info(
+                                count: charactersInfo["count"] as? Int ?? 0,
+                                pages: charactersInfo["pages"] as? Int ?? 0,
+                                next: charactersInfo["next"] as? String ?? "",
+                                prev: charactersInfo["prev"] as? String ?? ""
+                            ),
+                            results: results
+                        )
+                            self?.characters = characters
+                            self?.numberOfRows = characters.results.count
+                            self?.tableView.reloadData()
+                    }
+                    
+                    guard let error = dataResponse.error else { return }
+                    print(error.localizedDescription)
+                    
+                }
         }
+        
+        //    private func fetchLocations(from link: URL) {
+        //        networkManager.fetch(Locations.self, from: link) { [weak self] result in
+        //            switch result {
+        //            case .success(let locations):
+        //                self?.locations = locations
+        //                self?.numberOfRows = locations.results.count
+        //                self?.numberOfPages = locations.info.pages
+        //                self?.tableView.reloadData()
+        //            case .failure(let error):
+        //                print(error.localizedDescription)
+        //                self?.showAlert(withStatus: .failed)
+        //            }
+        //        }
+        //    }
+        //
+        //    private func fetchEpisodes(from link: URL) {
+        //        networkManager.fetch(Episodes.self, from: link) { [weak self] result in
+        //            switch result {
+        //            case .success(let episodes):
+        //                self?.episodes = episodes
+        //                self?.numberOfRows = episodes.results.count
+        //                self?.numberOfPages = episodes.info.pages
+        //                self?.tableView.reloadData()
+        //            case .failure(let error):
+        //                print(error.localizedDescription)
+        //                self?.showAlert(withStatus: .failed)
+        //            }
+        //        }
+        //    }
     }
-    
-    private func fetchCharacters(from link: URL) {
-        networkManager.fetch(Characters.self, from: link) { [weak self] result in
-            switch result {
-            case .success(let characters):
-                self?.characters = characters
-                self?.numberOfRows = characters.results.count
-                self?.numberOfPages = characters.info.pages
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-                self?.showAlert(withStatus: .failed)
-            }
-        }
-    }
-    
-    private func fetchLocations(from link: URL) {
-        networkManager.fetch(Locations.self, from: link) { [weak self] result in
-            switch result {
-            case .success(let locations):
-                self?.locations = locations
-                self?.numberOfRows = locations.results.count
-                self?.numberOfPages = locations.info.pages
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-                self?.showAlert(withStatus: .failed)
-            }
-        }
-    }
-    
-    private func fetchEpisodes(from link: URL) {
-        networkManager.fetch(Episodes.self, from: link) { [weak self] result in
-            switch result {
-            case .success(let episodes):
-                self?.episodes = episodes
-                self?.numberOfRows = episodes.results.count
-                self?.numberOfPages = episodes.info.pages
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-                self?.showAlert(withStatus: .failed)
-            }
-        }
-    }
-}
