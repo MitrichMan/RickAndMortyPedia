@@ -12,10 +12,7 @@ final class DetailsViewController: UIViewController {
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var characterImageView: UIImageView!
     
-    var category: Category!
     var character: Character!
-    var location: Location!
-    var episode: Episode!
     var episodes: [Episode] = []
     
     private let networkManager = NetworkManager.shared
@@ -25,6 +22,7 @@ final class DetailsViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         contentTextView.text = getDetails()
         getImage()
+        getEpisodes(from: character.episode)
         title = character.name
     }
     
@@ -44,6 +42,17 @@ final class DetailsViewController: UIViewController {
         return details
     }
     
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navigationVC = segue.destination as? UINavigationController else { return }
+        guard let episodesVC = navigationVC.topViewController as? EpisodesViewController else { return }
+        episodesVC.episodes = episodes
+    }
+}
+
+// MARK: - Networking
+extension DetailsViewController {
     private func getImage() {
         networkManager.fetchImage(from: character.image) { [weak self] result in
             switch result {
@@ -54,8 +63,26 @@ final class DetailsViewController: UIViewController {
             }
         }
     }
+    
+    private func fetchEpisodes(from link: URL) {
+        networkManager.fetch(Episode.self, from: link) { [weak self] result in
+            switch result {
+            case .success(let episode):
+                self?.episodes.append(episode)
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.showAlert(withStatus: .failed)
+            }
+        }
+    }
+
+private func getEpisodes(from links: [String]) {
+    for link in links {
+        guard let url = URL(string: link) else { return }
+        fetchEpisodes(from: url)
+    }
 }
-
-
+    
+}
 
 

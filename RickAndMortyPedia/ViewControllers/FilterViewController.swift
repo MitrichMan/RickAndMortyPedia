@@ -19,7 +19,6 @@ class FilterViewController: UIViewController {
     
     var url: URL!
     var filteredUrl: URL!
-    var category: Category!
     
     var characterNameFilter = ""
     var characterStatusFilter = ""
@@ -30,8 +29,6 @@ class FilterViewController: UIViewController {
     private let networkManager = NetworkManager.shared
     
     private var characters: Characters!
-    private var locations: Locations!
-    private var episodes: Episodes!
     
     private var numberOfRows = 0    
     
@@ -78,9 +75,7 @@ class FilterViewController: UIViewController {
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let contentListVC = segue.destination as? ContentListViewController else { return }
-        contentListVC.category = category
         contentListVC.numberOfRows = numberOfRows
-//        contentListVC.numberOfPages = numberOfPages
         contentListVC.characters = characters
         contentListVC.tableView.reloadData()
     }

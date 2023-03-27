@@ -7,28 +7,10 @@
 
 import Foundation
 
-struct Categories: Decodable {
-    let characters: URL
-    let locations: URL
-    let episodes: URL
-}
-
 // MARK: - Characters
 struct Characters: Decodable {
     let info: Info
     let results: [Character]
-}
-
-// MARK: - Locations
-struct Locations: Decodable {
-    let info: Info
-    let results: [Location]
-}
-
-// MARK: - Episodes
-struct Episodes: Decodable {
-    let info: Info
-    let results: [Episode]
 }
 
 // MARK: - Info
@@ -41,7 +23,6 @@ struct Info: Decodable {
 
 // MARK: - Character
 struct Character: Decodable {
-    let id: Int
     let name: String
     let status: String
     let species: String
@@ -57,7 +38,6 @@ struct Character: Decodable {
 
 // MARK: - Location
 struct Location: Decodable {
-    let id: Int
     let name: String
     let type: String
     let dimension: String
@@ -68,7 +48,6 @@ struct Location: Decodable {
 
 // MARK: - Episode
 struct Episode: Decodable {
-    let id: Int
     let name: String
     let airDate: String
     let episode: String
@@ -79,7 +58,6 @@ struct Episode: Decodable {
 
 extension Episode {
     enum CodingKeys: String, CodingKey {
-        case id = "id"
         case name = "name"
         case airDate = "air_date"
         case episode = "episode"
@@ -94,22 +72,3 @@ struct CharacterLocation: Decodable {
     let name: String
     let url: String
 }
-
-// MARK: - CategoryNames
-enum Category: CaseIterable {
-    case characters
-    case locations
-    case episodes
-    
-    var title: String {
-        switch self {
-        case .characters:
-            return "Персонажи"
-        case .locations:
-            return "Локации"
-        case .episodes:
-            return "Эпизоды"
-        }
-    }
-}
-

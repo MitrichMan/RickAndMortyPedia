@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 enum Link {
-    case base
-    
+    case characters
+
     var url: URL {
         switch self {
-        case .base:
+        case .characters:
             return URL(string: "https://rickandmortyapi.com/api/character")!
         }
     }

@@ -44,7 +44,7 @@
         <scene sceneID="vev-d7-Ozw">
             <objects>
                 <viewController id="a6r-Wm-aDE" customClass="FilterViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Tu2-Pm-yCb">
+                    <view key="view" contentMode="scaleToFill" id="Tu2-Pm-yCb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="476"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -200,7 +200,7 @@
         <scene sceneID="iVV-jb-w4w">
             <objects>
                 <tableViewController id="Bmg-Ar-0iH" customClass="ContentListViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="xBB-ci-4gz">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="xBB-ci-4gz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.70222753410000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -329,7 +329,7 @@
             <objects>
                 <viewController id="QsE-td-Ghn" customClass="DetailsViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="au0-od-kFi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="476"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="laD-RZ-LKU">
@@ -345,7 +345,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If1-xl-dBU">
-                                <rect key="frame" x="16" y="208" width="288" height="248"/>
+                                <rect key="frame" x="16" y="208" width="288" height="320"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -369,7 +369,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Эпизоды" id="oaK-ZY-MfD">
                             <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="gJt-ht-L7M" kind="presentation" id="vS7-ae-6dh"/>
+                                <segue destination="gJt-ht-L7M" kind="show" id="P84-Rv-RFV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -382,21 +382,21 @@
             </objects>
             <point key="canvasLocation" x="1925.625" y="-65.492957746478879"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Episodes View Controller-->
         <scene sceneID="QMa-je-BAp">
             <objects>
-                <tableViewController id="73c-k9-Gc8" sceneMemberID="viewController">
+                <tableViewController id="73c-k9-Gc8" customClass="EpisodesViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="byP-Up-962">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="492"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.91377839589999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.44302239659999998" green="0.98545938730000004" blue="0.25032052220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.91377839589999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexColor" red="0.44302239659999998" green="0.98545938730000004" blue="0.25032052220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="sectionIndexBackgroundColor" red="0.44302239659999998" green="0.98545938730000004" blue="0.25032052220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.44302239659999998" green="0.98545938730000004" blue="0.25032052220000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NI5-zX-ESH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" id="NI5-zX-ESH" customClass="ContentCell" customModule="RickAndMortyPedia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="46.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NI5-zX-ESH" id="8XL-u0-o0K">
@@ -410,6 +410,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="d2d-MX-uPS" secondAttribute="bottom" constant="3" id="HAL-Fc-VxZ"/>
                                         <constraint firstAttribute="trailing" secondItem="d2d-MX-uPS" secondAttribute="trailing" constant="16" id="Vfj-WG-NNI"/>
@@ -417,7 +418,11 @@
                                         <constraint firstItem="d2d-MX-uPS" firstAttribute="leading" secondItem="8XL-u0-o0K" secondAttribute="leading" constant="16" id="qba-7G-esQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="d2d-MX-uPS" id="fM5-L5-7Xv"/>
+                                    <segue destination="V3y-Dd-YMu" kind="show" id="CVD-ug-p8D"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -430,27 +435,24 @@
                             <color key="tintColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="V3y-Dd-YMu" kind="show" id="uGP-Ve-tol"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOR-JU-GMz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3440.625" y="-65.492957746478879"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Residents Table View Controller-->
         <scene sceneID="2Y5-AO-4kP">
             <objects>
-                <tableViewController id="V3y-Dd-YMu" sceneMemberID="viewController">
+                <tableViewController id="V3y-Dd-YMu" customClass="ResidentsTableViewController" customModule="RickAndMortyPedia" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="5I9-dh-vXA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="443.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tsF-pD-lhI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="residentsCell" id="tsF-pD-lhI" customClass="ContentCell" customModule="RickAndMortyPedia" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="320" height="46.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tsF-pD-lhI" id="LMz-CV-oJ4">
@@ -472,6 +474,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="QsE-td-Ghn" kind="show" id="5ni-2L-We5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -485,7 +490,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="L8A-09-uRa" kind="show" id="iY8-KH-7Kz"/>
+                        <segue destination="L8A-09-uRa" kind="show" identifier="goToResidents" id="iY8-KH-7Kz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnm-Re-1Eb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -497,7 +502,7 @@
             <objects>
                 <viewController id="L8A-09-uRa" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MJ6-Tb-ADJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="443.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nFm-fi-ZzX">
@@ -508,7 +513,7 @@
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvH-Ps-67f">
-                                <rect key="frame" x="16" y="188" width="288" height="235.5"/>
+                                <rect key="frame" x="16" y="188" width="288" height="340"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -517,7 +522,7 @@
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SI9-ek-bJc"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.022767890030000001" blue="0.2431388934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="SI9-ek-bJc" firstAttribute="bottom" secondItem="BvH-Ps-67f" secondAttribute="bottom" constant="20" id="4V1-6G-U0J"/>
                             <constraint firstItem="BvH-Ps-67f" firstAttribute="top" secondItem="nFm-fi-ZzX" secondAttribute="bottom" constant="8" symbolic="YES" id="6Pa-ww-di8"/>
@@ -539,12 +544,13 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gJt-ht-L7M" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="2u4-b0-rLI"/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" translucent="NO" largeTitles="YES" id="Rus-64-AOr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.91377839592540389" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.80050316639999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.11943909699999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="textShadowColor" white="0.0" alpha="0.80050316639999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -556,7 +562,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="73c-k9-Gc8" kind="relationship" relationship="rootViewController" id="k9G-b6-Z4a"/>
+                        <segue destination="73c-k9-Gc8" kind="relationship" relationship="rootViewController" id="XTm-fv-qdv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPx-ej-0PC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -564,6 +570,9 @@
             <point key="canvasLocation" x="2685" y="-65"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5ni-2L-We5"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
