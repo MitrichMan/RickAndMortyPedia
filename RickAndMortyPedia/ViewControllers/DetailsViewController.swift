@@ -75,14 +75,13 @@ extension DetailsViewController {
             }
         }
     }
-
-private func getEpisodes(from links: [String]) {
-    for link in links {
-        guard let url = URL(string: link) else { return }
-        fetchEpisodes(from: url)
-    }
-}
     
+    private func getEpisodes(from links: [String]) {
+        for link in links {
+            guard let url = URL(string: link) else { return }
+            fetchEpisodes(from: url)
+        }
+    }
 }
 
 

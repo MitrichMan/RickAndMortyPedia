@@ -39,7 +39,6 @@ final class ContentListViewController: UITableViewController {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         title = "Characters"
         fetchCharacters(from: Link.characters.url)
-
     }
     
     
@@ -111,7 +110,7 @@ final class ContentListViewController: UITableViewController {
 }
     
     // MARK: - Networking
-    extension ContentListViewController {
+extension ContentListViewController {
 private func fetchCharacters(from link: URL) {
     AF.request(link)
         .responseJSON { [weak self] dataResponse in
@@ -166,7 +165,6 @@ private func fetchCharacters(from link: URL) {
                 self?.numberOfRows = characters.results.count
                 self?.tableView.reloadData()
             }
-            
             guard let error = dataResponse.error else { return }
             print(error.localizedDescription)
             

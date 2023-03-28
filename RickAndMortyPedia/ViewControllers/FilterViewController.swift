@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Alamofire
 
-class FilterViewController: UIViewController {
+final class FilterViewController: UIViewController {
     
     @IBOutlet var characterStackView: UIStackView!
     
@@ -138,18 +139,64 @@ private extension FilterViewController {
 // MARK: - Networking
 extension FilterViewController {
     private func fetchCharacters(from link: URL) {
-        networkManager.fetch(Characters.self, from: link) { [weak self] result in
-            switch result {
-            case .success(let characters):
-                self?.characters = characters
-                self?.numberOfRows = characters.results.count
-                self?.performSegue(withIdentifier: "goToContentList", sender: nil)
-            case .failure(let error):
-                print(error.localizedDescription)
+        AF.request(link)
+            .responseJSON { [weak self] dataResponse in
+                guard let statusCode = dataResponse.response?.statusCode else { return }
+                if (200..<300).contains(statusCode) {
+                    guard let charactersData = dataResponse.value as? [String: Any] else { return }
+                    guard let charactersInfo = charactersData["info"] as? [String: Any] else { return }
+                    guard let charactersResults = charactersData["results"] as? [[String: Any]] else { return }
+                    
+                    var results: [Character] = []
+                    
+                    for charactersResult in charactersResults {
+                        guard let characterOrigin = charactersResult["origin"] as? [String: Any] else { return }
+                        guard let characterLocation = charactersResult["location"] as? [String: Any] else { return }
+                        
+                        let origin = CharacterLocation(
+                            name: characterOrigin["name"] as? String ?? "",
+                            url: characterOrigin["url"] as? String ?? ""
+                        )
+                        
+                        let location = CharacterLocation(
+                            name: characterLocation["name"] as? String ?? "",
+                            url: characterLocation["url"] as? String ?? ""
+                        )
+                        
+                        let result = Character(
+                            name: charactersResult["name"] as? String ?? "",
+                            status: charactersResult["status"] as? String ?? "",
+                            species: charactersResult["species"] as? String ?? "",
+                            type: charactersResult["type"] as? String ?? "",
+                            gender: charactersResult["gender"] as? String ?? "",
+                            origin: origin,
+                            location: location,
+                            image: charactersResult["image"] as? String ?? "",
+                            episode: charactersResult["episode"] as? [String] ?? [],
+                            url: charactersResult["url"] as? String ?? "",
+                            created: charactersResult["created"] as? String ?? ""
+                        )
+                        
+                        results.append(result)
+                    }
+                    let characters = Characters(
+                        info: Info(
+                            count: charactersInfo["count"] as? Int ?? 0,
+                            pages: charactersInfo["pages"] as? Int ?? 0,
+                            next: charactersInfo["next"] as? String ?? "",
+                            prev: charactersInfo["prev"] as? String ?? ""
+                        ),
+                        results: results
+                    )
+                    self?.characters = characters
+                    self?.numberOfRows = characters.results.count
+                    self?.performSegue(withIdentifier: "goToContentList", sender: nil)
+                }
+                guard let error = dataResponse.error else { return }
                 self?.showAlert(withStatus: .noContent)
-                break
+                print(error.localizedDescription)
+                
             }
-        }
     }
 }
 

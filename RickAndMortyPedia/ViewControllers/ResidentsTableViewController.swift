@@ -6,84 +6,113 @@
 //
 
 import UIKit
+import Alamofire
 
-class ResidentsTableViewController: UITableViewController {
+final class ResidentsTableViewController: UITableViewController {
+    
+    @IBOutlet var episodeDetailsLabel: UILabel!
+    
+    let networkManager = NetworkManager.shared
+    
+    var episode: Episode!
+    var characters: [Character] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
+        title = episode.name
+        episodeDetailsLabel.text = getEpisodeDetails()
+        fetchCharacter(from: episode.characters)
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        characters.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "residentsCell", for: indexPath)
+        guard let cell = cell as? ResidentsCell else { return UITableViewCell() }
+        cell.residentNameLabel.text = characters[indexPath.row].name
+        networkManager.fetchImage(from: characters[indexPath.row].image) { result in
+            switch result {
+            case .success(let image):
+                cell.residentImageView.image = UIImage(data: image)
+            case .failure(let error):
+                print(error.localizedDescription)
+                break
+            }
+        }
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToResident", sender: characters[indexPath.row])
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let residentVC = segue.destination as? ResidentViewController else { return }
+        residentVC.character = sender as? Character
     }
-    */
 
+    // MARK: - Private Methods
+    private func getEpisodeDetails() -> String {
+        let episodeDetails = """
+Episode code: \(episode.episode)
+Date: \(episode.airDate)
+Residents:
+"""
+        
+        return episodeDetails
+    }
 }
+
+// MARK: - Networking
+extension ResidentsTableViewController {
+    private func fetchCharacter(from links: [URL]) {
+        for link in links {
+        AF.request(link)
+            .responseJSON { [weak self] dataResponse in
+                guard let statusCode = dataResponse.response?.statusCode else { return }
+                if (200..<300).contains(statusCode) {
+                    guard let characterData = dataResponse.value as? [String: Any] else { return }
+                    guard let characterOrigin = characterData["origin"] as? [String: Any] else { return }
+                    guard let characterLocation = characterData["location"] as? [String: Any] else { return }
+                    
+                    
+                    let origin = CharacterLocation(
+                        name: characterOrigin["name"] as? String ?? "",
+                        url: characterOrigin["url"] as? String ?? ""
+                    )
+                    
+                    let location = CharacterLocation(
+                        name: characterLocation["name"] as? String ?? "",
+                        url: characterLocation["url"] as? String ?? ""
+                    )
+                    
+                    let character = Character(
+                        name: characterData["name"] as? String ?? "",
+                        status: characterData["status"] as? String ?? "",
+                        species: characterData["species"] as? String ?? "",
+                        type: characterData["type"] as? String ?? "",
+                        gender: characterData["gender"] as? String ?? "",
+                        origin: origin,
+                        location: location,
+                        image: characterData["image"] as? String ?? "",
+                        episode: characterData["episode"] as? [String] ?? [],
+                        url: characterData["url"] as? String ?? "",
+                        created: characterData["created"] as? String ?? ""
+                    )
+                    self?.characters.append(character)
+                    self?.tableView.reloadData()
+                }
+                guard let error = dataResponse.error else { return }
+                    print(error.localizedDescription)
+            }
+        }
+    }
+}
+

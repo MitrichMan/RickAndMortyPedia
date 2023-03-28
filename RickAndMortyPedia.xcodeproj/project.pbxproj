@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D09105129D333170072AE5B /* ResidentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D09105029D333170072AE5B /* ResidentViewController.swift */; };
 		4D0ED16729D18D6700BCCBE3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4D0ED16629D18D6700BCCBE3 /* Alamofire */; };
 		4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D179B4329CDBA79009F8E67 /* CharacterCell.swift */; };
 		4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */; };
@@ -22,11 +23,13 @@
 		4D54CA0A29D1EF1700D51B31 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0929D1EF1700D51B31 /* EpisodesViewController.swift */; };
 		4D54CA0C29D1EF4000D51B31 /* ResidentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0B29D1EF4000D51B31 /* ResidentsTableViewController.swift */; };
 		4D54CA0E29D1F12F00D51B31 /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0D29D1F12F00D51B31 /* ContentCell.swift */; };
+		4D54CA1029D2FE2F00D51B31 /* ResidentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0F29D2FE2F00D51B31 /* ResidentsCell.swift */; };
 		4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */; };
 		4DA77EF129CF426600FBC35C /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA77EF029CF426600FBC35C /* AlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D09105029D333170072AE5B /* ResidentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentViewController.swift; sourceTree = "<group>"; };
 		4D179B4329CDBA79009F8E67 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 		4D353B9E29CC4A7A0053CD2F /* RickAndMortyPedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMortyPedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D353BA129CC4A7A0053CD2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 		4D54CA0929D1EF1700D51B31 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		4D54CA0B29D1EF4000D51B31 /* ResidentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsTableViewController.swift; sourceTree = "<group>"; };
 		4D54CA0D29D1F12F00D51B31 /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
+		4D54CA0F29D2FE2F00D51B31 /* ResidentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsCell.swift; sourceTree = "<group>"; };
 		4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4DA77EF029CF426600FBC35C /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +122,7 @@
 				4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */,
 				4D54CA0929D1EF1700D51B31 /* EpisodesViewController.swift */,
 				4D54CA0B29D1EF4000D51B31 /* ResidentsTableViewController.swift */,
+				4D09105029D333170072AE5B /* ResidentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 			children = (
 				4D179B4329CDBA79009F8E67 /* CharacterCell.swift */,
 				4D54CA0D29D1F12F00D51B31 /* ContentCell.swift */,
+				4D54CA0F29D2FE2F00D51B31 /* ResidentsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,10 +239,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D353BBD29CC4B8F0053CD2F /* NetworkManager.swift in Sources */,
+				4D54CA1029D2FE2F00D51B31 /* ResidentsCell.swift in Sources */,
 				4D353BA229CC4A7A0053CD2F /* AppDelegate.swift in Sources */,
 				4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */,
 				4DA77EEE29CEB16A00FBC35C /* FilterViewController.swift in Sources */,
 				4DA77EF129CF426600FBC35C /* AlertController.swift in Sources */,
+				4D09105129D333170072AE5B /* ResidentViewController.swift in Sources */,
 				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D54CA0E29D1F12F00D51B31 /* ContentCell.swift in Sources */,
 				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,

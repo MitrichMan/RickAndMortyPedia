@@ -7,7 +7,7 @@
 
 import UIKit
 
-class EpisodesViewController: UITableViewController {
+final class EpisodesViewController: UITableViewController {
     
     let networkManager = NetworkManager.shared
     
@@ -16,12 +16,11 @@ class EpisodesViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Эпизоды"
-        
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
+        title = "Эпизоды" 
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         episodes.count
     }
@@ -34,72 +33,14 @@ class EpisodesViewController: UITableViewController {
         return cell
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    // MARK: - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToResidents", sender: episodes[indexPath.row])
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+         guard let residentsVC = segue.destination as? ResidentsTableViewController else { return }
+         residentsVC.episode = sender as? Episode 
      }
-     */
-    
 }
-
-extension EpisodesViewController {
-//        private func fetchEpisodes(from link: URL) {
-//            networkManager.fetch(Episode.self, from: link) { [weak self] result in
-//                switch result {
-//                case .success(let episode):
-//                    self?.episodes.append(episode)
-//                    self?.tableView.reloadData()
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                    self?.showAlert(withStatus: .failed)
-//                }
-//            }
-//        }
-//
-//    private func getEpisodes(from links: [String]) {
-//        for link in links {
-//            guard let url = URL(string: link) else { return }
-//            fetchEpisodes(from: url)
-//        }
-//    }
-}
-
