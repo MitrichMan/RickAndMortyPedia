@@ -18,7 +18,6 @@
 		4D353BBA29CC4B490053CD2F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BB929CC4B490053CD2F /* Categories.swift */; };
 		4D353BBD29CC4B8F0053CD2F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BBC29CC4B8F0053CD2F /* NetworkManager.swift */; };
 		4D353BC129CC56300053CD2F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC029CC56300053CD2F /* DetailsViewController.swift */; };
-		4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */; };
 		4D353BC529CC56BF0053CD2F /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */; };
 		4D54CA0A29D1EF1700D51B31 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0929D1EF1700D51B31 /* EpisodesViewController.swift */; };
 		4D54CA0C29D1EF4000D51B31 /* ResidentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54CA0B29D1EF4000D51B31 /* ResidentsTableViewController.swift */; };
@@ -41,7 +40,6 @@
 		4D353BB929CC4B490053CD2F /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		4D353BBC29CC4B8F0053CD2F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4D353BC029CC56300053CD2F /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		4D54CA0929D1EF1700D51B31 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 		4D54CA0B29D1EF4000D51B31 /* ResidentsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentsTableViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		4D353BB729CC4AAB0053CD2F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D353BC229CC565F0053CD2F /* CategoriesViewController.swift */,
 				4D353BC429CC56BF0053CD2F /* ContentListViewController.swift */,
 				4D353BC029CC56300053CD2F /* DetailsViewController.swift */,
 				4DA77EED29CEB16A00FBC35C /* FilterViewController.swift */,
@@ -247,7 +244,6 @@
 				4D09105129D333170072AE5B /* ResidentViewController.swift in Sources */,
 				4D179B4429CDBA79009F8E67 /* CharacterCell.swift in Sources */,
 				4D54CA0E29D1F12F00D51B31 /* ContentCell.swift in Sources */,
-				4D353BC329CC565F0053CD2F /* CategoriesViewController.swift in Sources */,
 				4D353BA429CC4A7A0053CD2F /* SceneDelegate.swift in Sources */,
 				4D353BBA29CC4B490053CD2F /* Categories.swift in Sources */,
 				4D54CA0C29D1EF4000D51B31 /* ResidentsTableViewController.swift in Sources */,

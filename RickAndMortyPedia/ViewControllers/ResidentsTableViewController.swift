@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 final class ResidentsTableViewController: UITableViewController {
     
@@ -22,7 +21,7 @@ final class ResidentsTableViewController: UITableViewController {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
         title = episode.name
         episodeDetailsLabel.text = getEpisodeDetails()
-        fetchCharacter(from: episode.characters)
+        fetchResidents(from: episode.characters)
     }
 
     // MARK: - Table view data source
@@ -72,45 +71,15 @@ Residents:
 
 // MARK: - Networking
 extension ResidentsTableViewController {
-    private func fetchCharacter(from links: [URL]) {
-        for link in links {
-        AF.request(link)
-            .responseJSON { [weak self] dataResponse in
-                guard let statusCode = dataResponse.response?.statusCode else { return }
-                if (200..<300).contains(statusCode) {
-                    guard let characterData = dataResponse.value as? [String: Any] else { return }
-                    guard let characterOrigin = characterData["origin"] as? [String: Any] else { return }
-                    guard let characterLocation = characterData["location"] as? [String: Any] else { return }
-                    
-                    
-                    let origin = CharacterLocation(
-                        name: characterOrigin["name"] as? String ?? "",
-                        url: characterOrigin["url"] as? String ?? ""
-                    )
-                    
-                    let location = CharacterLocation(
-                        name: characterLocation["name"] as? String ?? "",
-                        url: characterLocation["url"] as? String ?? ""
-                    )
-                    
-                    let character = Character(
-                        name: characterData["name"] as? String ?? "",
-                        status: characterData["status"] as? String ?? "",
-                        species: characterData["species"] as? String ?? "",
-                        type: characterData["type"] as? String ?? "",
-                        gender: characterData["gender"] as? String ?? "",
-                        origin: origin,
-                        location: location,
-                        image: characterData["image"] as? String ?? "",
-                        episode: characterData["episode"] as? [String] ?? [],
-                        url: characterData["url"] as? String ?? "",
-                        created: characterData["created"] as? String ?? ""
-                    )
-                    self?.characters.append(character)
-                    self?.tableView.reloadData()
-                }
-                guard let error = dataResponse.error else { return }
-                    print(error.localizedDescription)
+    private func fetchResidents(from links: [String]) {
+        networkManager.fetchResidents(from: links) { [weak self] result in
+            switch result {
+            case .success(let residents):
+                self?.characters = residents
+                self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showAlert(withStatus: .noContent)
+                print(error.localizedDescription)
             }
         }
     }

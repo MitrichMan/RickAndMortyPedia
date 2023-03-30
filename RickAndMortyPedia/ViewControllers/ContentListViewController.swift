@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 final class ContentListViewController: UITableViewController {
     
@@ -111,91 +110,17 @@ final class ContentListViewController: UITableViewController {
     
     // MARK: - Networking
 extension ContentListViewController {
-private func fetchCharacters(from link: URL) {
-    AF.request(link)
-        .responseJSON { [weak self] dataResponse in
-            guard let statusCode = dataResponse.response?.statusCode else { return }
-            if (200..<300).contains(statusCode) {
-                guard let charactersData = dataResponse.value as? [String: Any] else { return }
-                guard let charactersInfo = charactersData["info"] as? [String: Any] else { return }
-                guard let charactersResults = charactersData["results"] as? [[String: Any]] else { return }
-                
-                var results: [Character] = []
-                
-                for charactersResult in charactersResults {
-                    guard let characterOrigin = charactersResult["origin"] as? [String: Any] else { return }
-                    guard let characterLocation = charactersResult["location"] as? [String: Any] else { return }
-                    
-                    let origin = CharacterLocation(
-                        name: characterOrigin["name"] as? String ?? "",
-                        url: characterOrigin["url"] as? String ?? ""
-                    )
-                    
-                    let location = CharacterLocation(
-                        name: characterLocation["name"] as? String ?? "",
-                        url: characterLocation["url"] as? String ?? ""
-                    )
-                    
-                    let result = Character(
-                        name: charactersResult["name"] as? String ?? "",
-                        status: charactersResult["status"] as? String ?? "",
-                        species: charactersResult["species"] as? String ?? "",
-                        type: charactersResult["type"] as? String ?? "",
-                        gender: charactersResult["gender"] as? String ?? "",
-                        origin: origin,
-                        location: location,
-                        image: charactersResult["image"] as? String ?? "",
-                        episode: charactersResult["episode"] as? [String] ?? [],
-                        url: charactersResult["url"] as? String ?? "",
-                        created: charactersResult["created"] as? String ?? ""
-                    )
-                    
-                    results.append(result)
-                }
-                let characters = Characters(
-                    info: Info(
-                        count: charactersInfo["count"] as? Int ?? 0,
-                        pages: charactersInfo["pages"] as? Int ?? 0,
-                        next: charactersInfo["next"] as? String ?? "",
-                        prev: charactersInfo["prev"] as? String ?? ""
-                    ),
-                    results: results
-                )
+    private func fetchCharacters(from link: URL) {
+        networkManager.fetchCharacters(from: link) { [weak self] result in
+            switch result {
+            case .success(let characters):
                 self?.characters = characters
                 self?.numberOfRows = characters.results.count
                 self?.tableView.reloadData()
+            case .failure(let error):
+                self?.showAlert(withStatus: .failed)
+                print(error)
             }
-            guard let error = dataResponse.error else { return }
-            print(error.localizedDescription)
-            
         }
-}
-        
-        //        private func fetchCharacters(from link: URL) {
-        //            networkManager.fetch(Characters.self, from: link) { [weak self] result in
-        //                switch result {
-        //                case .success(let characters):
-        //                    self?.characters = characters
-        //                    self?.numberOfRows = characters.results.count
-        //                    self?.tableView.reloadData()
-        //                case .failure(let error):
-        //                    print(error.localizedDescription)
-        //                    self?.showAlert(withStatus: .failed)
-        //                }
-        //            }
-        //        }
-        //    private func fetchEpisodes(from link: URL) {
-        //        networkManager.fetch(Episodes.self, from: link) { [weak self] result in
-        //            switch result {
-        //            case .success(let episodes):
-        //                self?.episodes = episodes
-        //                self?.numberOfRows = episodes.results.count
-        //                self?.numberOfPages = episodes.info.pages
-        //                self?.tableView.reloadData()
-        //            case .failure(let error):
-        //                print(error.localizedDescription)
-        //                self?.showAlert(withStatus: .failed)
-        //            }
-        //        }
-        //    }
     }
+}

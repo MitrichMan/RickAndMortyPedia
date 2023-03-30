@@ -20,10 +20,12 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "rick-and-morty-season-6-episode-1.jpeg")!)
+        title = character.name
+        
         contentTextView.text = getDetails()
         getImage()
-        getEpisodes(from: character.episode)
-        title = character.name
+        
+        fetchEpisodes(from: character.episode)
     }
     
     // MARK: - private methods
@@ -64,22 +66,17 @@ extension DetailsViewController {
         }
     }
     
-    private func fetchEpisodes(from link: URL) {
-        networkManager.fetch(Episode.self, from: link) { [weak self] result in
-            switch result {
-            case .success(let episode):
-                self?.episodes.append(episode)
-            case .failure(let error):
-                print(error.localizedDescription)
-                self?.showAlert(withStatus: .failed)
-            }
-        }
-    }
-    
-    private func getEpisodes(from links: [String]) {
+    private func fetchEpisodes (from links: [String]) {
         for link in links {
-            guard let url = URL(string: link) else { return }
-            fetchEpisodes(from: url)
+            networkManager.fetchEpisodes(from: link) { [weak self] result in
+                switch result {
+                case .success(let episode):
+                    self?.episodes.append(episode)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self?.showAlert(withStatus: .failed)
+                }
+            }
         }
     }
 }
